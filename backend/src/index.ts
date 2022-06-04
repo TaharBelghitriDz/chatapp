@@ -9,16 +9,17 @@ import { buildSchema } from "graphql";
 import { GraphQLFileLoader } from "@graphql-tools/graphql-file-loader";
 import { loadSchemaSync } from "@graphql-tools/load";
 import { join } from "path";
+import { loginResolver, signupResolver } from "./resolvers/auth";
 const app = express();
 
 app.use(helmet());
 app.use(cors());
 
-var schema = buildSchema(`
-  type Query {
-    hello: String
-  }
-`);
+// var schema = buildSchema(`
+//   type Query {
+//     hello: String
+//   }
+// `);
 
 var root = {
   hello: () => {
@@ -26,18 +27,26 @@ var root = {
   },
 };
 
-const typeDefs = loadSchemaSync(
-  join(__dirname, "./schemas.graphql/query.graphql"),
+const schema = loadSchemaSync(
+  [
+    join(__dirname, "./schemas.graphql/query.graphql"),
+    join(__dirname, "./schemas.graphql/mutation.graphql"),
+  ],
   {
     loaders: [new GraphQLFileLoader()],
   }
 );
 
+const rootValue = {
+  signup: signupResolver,
+  login: loginResolver,
+};
+
 app.use(
   "*",
   graphqlHTTP({
-    schema: schema,
-    rootValue: root,
+    schema,
+    rootValue,
     graphiql: config.graphql.graphiql,
   })
 );
