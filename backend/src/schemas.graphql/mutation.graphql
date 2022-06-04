@@ -1,0 +1,14 @@
+type auth {
+  err: String
+  token: String
+}
+
+type Mutation {
+  login(email: String, password: String): auth
+  signup(
+    email: String
+    password: String
+    checkPassword: String
+    name: String
+  ): auth
+}
