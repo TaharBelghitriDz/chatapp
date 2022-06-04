@@ -14,12 +14,18 @@
   "author": "github/TaharBelghitriDz",
   "license": "ISC",
   "dependencies": {
+    "@graphql-tools/graphql-file-loader": "^7.3.14",
+    "@graphql-tools/load": "^7.5.13",
     "@types/cors": "^2.8.12",
     "@types/spdy": "^3.4.5",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "express-graphql": "^0.12.0",
+    "graphql": "^16.5.0",
+    "graphql-middleware": "^6.1.28",
     "helmet": "^5.1.0",
+    "mongoose": "^6.3.5",
     "spdy": "^4.0.2"
   },
   "devDependencies": {
