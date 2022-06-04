@@ -15,18 +15,6 @@ const app = express();
 app.use(helmet());
 app.use(cors());
 
-// var schema = buildSchema(`
-//   type Query {
-//     hello: String
-//   }
-// `);
-
-var root = {
-  hello: () => {
-    return "Hello world!";
-  },
-};
-
 const schema = loadSchemaSync(
   [
     join(__dirname, "./schemas.graphql/query.graphql"),
@@ -53,5 +41,11 @@ app.use(
 
 app.use(notFoundError);
 app.use(reqErrHandler);
+
+new Promise((r) => {
+  r;
+}).then(() => {
+  console.log("here");
+});
 
 export default app;
