@@ -1,3 +1,6 @@
+import dotenv from "dotenv";
+dotenv.config({ path: "./.env" });
+
 type NODE_ENV = "test" | "dev" | "production";
 
 const env = process.env.NODE_ENV as NODE_ENV;
