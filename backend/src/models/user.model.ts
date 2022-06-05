@@ -1,5 +1,5 @@
 import { hash } from "bcryptjs";
-import { Callback, model, Schema } from "mongoose";
+import { model, Schema } from "mongoose";
 import {
   dbResultType,
   findUserInterface,
@@ -19,7 +19,7 @@ userSchema.pre<userSchemaInterface>(
   function (this: userSchemaInterface, next) {
     //random pics
     // cover :
-    hash(this.password, 8, (err, hash) => {
+    hash(this.password, 8, (err: any, hash: string) => {
       if (err) throw err;
       this.password = hash;
       next();
@@ -28,11 +28,7 @@ userSchema.pre<userSchemaInterface>(
 );
 
 userSchema.statics.addUser = (args: userSchemaInterface) =>
-  new user(args).save((err, result) => {
-    console.log(result);
-    if (err) return { err: "somthing wrong happend" };
-    else return { token: "token" };
-  });
+  new user(args).save();
 
 userSchema.statics.findUser = (
   args: findUserInterface,

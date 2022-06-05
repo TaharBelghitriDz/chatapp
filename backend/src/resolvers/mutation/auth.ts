@@ -1,6 +1,7 @@
-import { validEmail, validName } from "../helpers/userDetails.validation";
-import { user } from "../models/user.model";
-import { GraphLoginType, GraphSignUpType } from "../types.interfaces/resolvers";
+import { validEmail, validName } from "../../helpers/userDetails.validation";
+import { user } from "../../models/user.model";
+import { GraphSignUpType } from "../../types.interfaces/resolvers";
+import jwt from "jsonwebtoken";
 
 export const signup: GraphSignUpType = async (
   _,
@@ -14,8 +15,16 @@ export const signup: GraphSignUpType = async (
   console.log("validate name " + validName(name));
   if (!validName(name)) return { err: "unvalid name" };
 
-  const result = await user.addUser({ name, email, password });
-  if (result.err) return { err: result.err };
+  return user
+    .addUser({ name, email, password })
+    .then((result: any) => ({
+      token: jwt.sign({ _id: result._id }, `${result._id}`),
+    }))
+    .catch(
+      (err: any) => (
+        console.log(err), { err: "somthing wrong happend pleas try again" }
+      )
+    );
 };
 
 export const login = async (args: any) => {

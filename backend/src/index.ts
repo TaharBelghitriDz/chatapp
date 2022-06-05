@@ -8,14 +8,14 @@ import config from "./config";
 import { GraphQLFileLoader } from "@graphql-tools/graphql-file-loader";
 import { loadSchemaSync } from "@graphql-tools/load";
 import { join } from "path";
-import { login, signup } from "./resolvers/auth";
+import resolvers from "./resolvers";
 import { addResolversToSchema } from "@graphql-tools/schema";
 const app = express();
 
 app.use(helmet());
 app.use(cors());
 
-const schemaLoad = loadSchemaSync(
+const schema = loadSchemaSync(
   [
     join(__dirname, "./schemas.graphql/query.graphql"),
     join(__dirname, "./schemas.graphql/mutation.graphql"),
@@ -25,20 +25,13 @@ const schemaLoad = loadSchemaSync(
   }
 );
 
-const rootValue = {
-  signup,
-  login,
-};
-
-const schema = addResolversToSchema({
-  schema: schemaLoad,
-  resolvers: { Mutation: rootValue },
-});
-
 app.use(
   "*",
   graphqlHTTP({
-    schema,
+    schema: addResolversToSchema({
+      schema,
+      resolvers,
+    }),
     graphiql: config.graphql.graphiql,
   })
 );

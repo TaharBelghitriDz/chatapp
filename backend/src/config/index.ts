@@ -10,7 +10,7 @@ const dev = {
     port: 5005,
   },
   db: {
-    url: "mongodb://localhost:27017/chatapp",
+    url: "mongodb://localhost:27017/chatappdev",
   },
   graphql: {
     graphiql: true,
