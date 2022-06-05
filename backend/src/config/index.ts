@@ -1,9 +1,9 @@
-import dotenv from "dotenv";
-dotenv.config({ path: "./.env" });
+import { config } from "dotenv";
+config({ path: "./.env" });
 
 type NODE_ENV = "test" | "dev" | "production";
 
-const env = process.env.NODE_ENV as NODE_ENV;
+const env = (process.env.NODE_ENV as NODE_ENV) || "dev";
 
 const dev = {
   app: {
@@ -40,10 +40,10 @@ const production = {
   },
 };
 
-const config = {
+const configs = {
   dev,
   test,
   production,
 };
 console.log(env);
-export default config[env];
+export default configs[env];

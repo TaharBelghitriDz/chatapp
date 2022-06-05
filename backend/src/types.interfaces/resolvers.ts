@@ -4,8 +4,8 @@ interface result {
 }
 export type resolverType<args, ctx = undefined, R = result> = (
   p: any,
-  context: ctx | any,
   args: args,
+  context: ctx | any,
   info: any
 ) => Promise<R>;
 
