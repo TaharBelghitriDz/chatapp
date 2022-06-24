@@ -11,32 +11,13 @@ import { join } from "path";
 import { login, signup } from "./resolvers/auth";
 import { addResolversToSchema } from "@graphql-tools/schema";
 const app = express();
+const server = createServer(app);
 
 app.use(helmet());
 app.use(cors());
 
-const schemaLoad = loadSchemaSync(
-  [
-    join(__dirname, "./schemas.graphql/query.graphql"),
-    join(__dirname, "./schemas.graphql/mutation.graphql"),
-  ],
-  {
-    loaders: [new GraphQLFileLoader()],
-  }
-);
-
-const rootValue = {
-  signup,
-  login,
-};
-
-const schema = addResolversToSchema({
-  schema: schemaLoad,
-  resolvers: { Mutation: rootValue },
-});
-
 app.use(
-  "*",
+  "/",
   graphqlHTTP({
     schema,
     graphiql: config.graphql.graphiql,
@@ -46,4 +27,4 @@ app.use(
 app.use(notFoundError);
 app.use(reqErrHandler);
 
-export default app;
+export default server;
