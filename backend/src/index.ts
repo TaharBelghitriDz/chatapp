@@ -5,11 +5,9 @@ import "./config/mongo.config";
 import { graphqlHTTP } from "express-graphql";
 import { notFoundError, reqErrHandler } from "./middlewares/reqErorHandler";
 import config from "./config";
-import { GraphQLFileLoader } from "@graphql-tools/graphql-file-loader";
-import { loadSchemaSync } from "@graphql-tools/load";
-import { join } from "path";
-import { login, signup } from "./resolvers/auth";
-import { addResolversToSchema } from "@graphql-tools/schema";
+import { createServer } from "http";
+import schema from "./schemas.graphql/index.scheams.graphql";
+
 const app = express();
 const server = createServer(app);
 
