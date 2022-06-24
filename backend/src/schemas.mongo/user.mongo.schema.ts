@@ -9,11 +9,15 @@ export interface userSchemaInterface extends Document {
 
 export interface userModelINterface extends Model<userSchemaInterface> {
   addUser: (a: findUserInterface & { password: string }) => any;
+  findUser: (
+    args: findUserInterface,
+    clb: (args: dbResultType | null) => void
+  ) => Promise<{ err: any; token: any }>;
 }
 
-export interface dbResultType extends userSchemaInterface {
-  _id: any;
-}
+export type dbResultType = {
+  _id: string;
+} & userSchemaInterface;
 
 export interface findUserInterface {
   _id?: string;

@@ -8,6 +8,7 @@ const env = (process.env.NODE_ENV as NODE_ENV) || "dev";
 const dev = {
   app: {
     port: 5005,
+    SECRETKEY: "azertyuiop",
   },
   db: {
     url: "mongodb://localhost:27017/chatapp",
@@ -19,6 +20,7 @@ const dev = {
 const test = {
   app: {
     port: process.env.PORT,
+    SECRETKEY: process.env.SECRETKEY,
   },
   db: {
     url: process.env.MONGOOSE_URL,
@@ -31,6 +33,7 @@ const test = {
 const production = {
   app: {
     port: process.env.PORT,
+    SECRETKEY: process.env.SECRETKEY,
   },
   db: {
     url: process.env.MONGOOSE_URL,

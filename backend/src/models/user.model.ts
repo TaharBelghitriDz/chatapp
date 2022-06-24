@@ -1,5 +1,6 @@
 import { hash } from "bcryptjs";
 import { Callback, model, Schema } from "mongoose";
+import { tokenSign } from "../helpers/jwt";
 import {
   dbResultType,
   findUserInterface,
@@ -28,22 +29,29 @@ userSchema.pre<userSchemaInterface>(
 );
 
 userSchema.statics.addUser = (args: userSchemaInterface) =>
-  new user(args).save((err, result) => {
-    console.log(result);
-    if (err) return { err: "somthing wrong happend" };
-    else return { token: "token" };
-  });
+  new user(args)
+    .save()
+    .then(({ _id }) => {
+      const token = tokenSign(_id);
+      return { token };
+    })
+    .catch((err: any) => {
+      if (err.err) return { err: err.err };
+      else return { err: "somthign wrong happend" };
+    });
 
 userSchema.statics.findUser = (
   args: findUserInterface,
-  clb: (args: dbResultType | null) => any
+  clb: (args: dbResultType | null) => void
 ) =>
   user
     .findOne({ args })
     .then(clb)
-    .catch(({ err }) => {
-      if (err) return { err };
-      else return { err: "something wrong happend please try again" };
+    .catch((err) => {
+      console.log(err);
+
+      if (err.err) return { err: err };
+      else return { err: "something wrong happend" };
     });
 
 export const user = model<userSchemaInterface, userModelINterface>(
