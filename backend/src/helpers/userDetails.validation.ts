@@ -1,6 +1,5 @@
 export const validEmail = (str: string): boolean => {
   try {
-    console.log("email : " + str);
     if (
       str.length < 50 &&
       str.length > 5 &&
@@ -9,7 +8,6 @@ export const validEmail = (str: string): boolean => {
       return true;
     else return false;
   } catch (error) {
-    console.log(error);
     return false;
   }
 };
