@@ -9,6 +9,7 @@ import { createServer } from "http";
 import schema from "./schemas.graphql/index.scheams.graphql";
 import { Server, Socket } from "socket.io";
 import socketIoConfog from "./config/socketio.confog";
+import socket from "./routes/socketio.routes";
 
 const app = express();
 const server = createServer(app);
@@ -30,8 +31,6 @@ app.use(reqErrHandler);
 const io = new Server(server, socketIoConfog);
 io.path("/");
 
-io.on("connection", (socket) => {
-  console.log("new user connected " + socket.id);
-});
+io.on("connection", socket);
 
 export default server;
