@@ -7,6 +7,7 @@ import { notFoundError, reqErrHandler } from "./middlewares/reqErorHandler";
 import config from "./config";
 import { createServer } from "http";
 import schema from "./schemas.graphql/index.scheams.graphql";
+import { Server, Socket } from "socket.io";
 
 const app = express();
 const server = createServer(app);
@@ -24,5 +25,16 @@ app.use(
 
 app.use(notFoundError);
 app.use(reqErrHandler);
+
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+  },
+});
+io.path("/");
+
+io.on("connection", (socket) => {
+  console.log("new user connected " + socket.id);
+});
 
 export default server;

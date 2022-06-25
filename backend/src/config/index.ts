@@ -3,7 +3,9 @@ config({ path: "./.env" });
 
 type NODE_ENV = "test" | "dev" | "production";
 
-const env = (process.env.NODE_ENV as NODE_ENV) || "dev";
+// i case you didn't setup dotenv file it's gonna work in dev mode
+const env =
+  (process.env.NODE_ENV as NODE_ENV) || (console.log("dev mode"), "dev");
 
 const dev = {
   app: {
@@ -48,5 +50,5 @@ const configs = {
   test,
   production,
 };
-console.log(env);
+
 export default configs[env];

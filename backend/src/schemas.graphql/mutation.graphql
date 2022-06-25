@@ -3,12 +3,23 @@ type auth {
   token: String
 }
 
+type userDetails {
+  name: String
+  cover: String
+  followers: Boolean
+  follwed: Boolean
+  err: String
+}
+
 type Mutation {
   login(email: String, password: String): auth
+
   signup(
     email: String
     password: String
     checkPassword: String
     name: String
   ): auth
+
+  findUser(token: String, name: String): userDetails
 }

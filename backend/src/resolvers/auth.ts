@@ -1,7 +1,10 @@
 import { tokenSign } from "../helpers/jwt";
 import { validEmail, validName } from "../helpers/userDetails.validation";
 import { user } from "../models/user.model";
-import { GraphLoginType, GraphSignUpType } from "../types.interfaces/resolvers";
+import {
+  GraphLoginType,
+  GraphSignUpType,
+} from "../types.interfaces/resolvers.types";
 
 export const signup: GraphSignUpType = async (
   _,
@@ -27,6 +30,7 @@ export const signup: GraphSignUpType = async (
 
 export const login: GraphLoginType = async (_, { email, password }) => {
   if (!validEmail(email)) return { err: "unvalid email " };
+
   if (password.length < 8 || password.length > 30)
     return { err: "unvalid password" };
 

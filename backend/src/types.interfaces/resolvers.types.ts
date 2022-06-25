@@ -1,8 +1,10 @@
+import { returnedUserInterface } from "../schemas.mongo/user.mongo.schema";
+
 interface result {
   err?: string | undefined;
   token?: string | undefined;
 }
-export type resolverType<args, ctx = undefined, R = result> = (
+export type resolverType<args, R = result, ctx = undefined> = (
   p: any,
   args: args,
   context: ctx | any,
@@ -17,4 +19,12 @@ interface signupArgs {
   name: string;
   checkPassword: string;
 }
+
 export type GraphSignUpType = resolverType<signupArgs>;
+
+export type graphqlMiddlewreType<T> = (args: resolverType<T>[]) => Promise<T>;
+
+export type GraphFindUserType = resolverType<
+  { name: string },
+  returnedUserInterface
+>;
