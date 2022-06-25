@@ -4,7 +4,7 @@ import { addResolversToSchema } from "@graphql-tools/schema";
 import { applyMiddleware, IMiddleware } from "graphql-middleware";
 import { join } from "path";
 import { login, signup } from "../resolvers/auth";
-import { findUser } from "../resolvers/relations.resolver";
+import { findUser, follow } from "../resolvers/relations.resolver";
 import { checkUser } from "../middlewares/graphql.middlewares";
 
 const schemaLoad = loadSchemaSync(
@@ -18,11 +18,13 @@ const resolver = {
   signup,
   login,
   findUser,
+  follow,
 };
 
 const middlewares: IMiddleware<typeof resolver> = {
   Mutation: {
     findUser: checkUser,
+    follow: checkUser,
   },
 };
 

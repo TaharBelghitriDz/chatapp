@@ -1,7 +1,7 @@
 import { Document, Model } from "mongoose";
 
 export interface messagesListSchema extends Document {
-  userId: string;
+  usersId: string[];
   seen: boolean | string[];
   messages: messageSchema[];
 }
@@ -16,7 +16,7 @@ interface msgType {
 }
 
 export interface messageSchema extends Document {
-  fromId: string;
+  fromName: string;
   date: string;
   content: string;
   repsponseOf?: string;

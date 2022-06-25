@@ -2,6 +2,10 @@ type auth {
   err: String
   token: String
 }
+type action {
+  err: String
+  result: Boolean
+}
 
 type userDetails {
   name: String
@@ -22,4 +26,6 @@ type Mutation {
   ): auth
 
   findUser(token: String, name: String): userDetails
+
+  follow(token: String, name: String, follow: Boolean): action
 }

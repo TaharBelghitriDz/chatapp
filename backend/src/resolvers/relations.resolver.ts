@@ -32,17 +32,35 @@ export const follow = async (
   await user
     .findOne({ name })
     .then(async (user: userSchemaInterface | null) => {
-      if (!user || name === userData.name)
-        return { err: "somthing wrogn happend" };
+      if (!user || name === userData.name) {
+        console.log("here");
+        console.log(name);
+        console.log(userData.name);
 
+        return { err: "somthing wrogn happend" };
+      }
       if (follow)
-        user.followers?.push(userData._id),
-          user
+        return (
+          user.followers?.push(userData._id),
+          await user
             .save()
             .then(() => ({ result: "followed" }))
             .catch((err) => {
+              console.log(err);
+
               //loging here
               return { err: "somethignwrong happend" };
-            });
+            })
+        );
+      else
+        return user
+          .updateOne({ name }, { $pull: { list: userData._id } })
+          .then(() => ({ result: "unfollwed" }))
+          .catch((err) => {
+            //loging here
+            console.log(err);
+
+            return { err: "somethignwrong happend" };
+          });
     })
     .catch(() => ({ err: "somthing wrong happend" }));

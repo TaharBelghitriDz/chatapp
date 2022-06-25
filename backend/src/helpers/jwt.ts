@@ -1,4 +1,4 @@
-import jwt, { SignCallback } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import config from "../config";
 
 export const tokenVrfy = (token: string, clb?: (err: any, rslt: any) => void) =>
