@@ -23,7 +23,11 @@ export const findUser = async (_: any, { name }: any) =>
 
 export const follow = async (
   _: any,
-  { name, userData }: { name: string; userData: userSchemaInterface }
+  {
+    name,
+    userData,
+    follow,
+  }: { name: string; userData: userSchemaInterface; follow: boolean }
 ) =>
   await user
     .findOne({ name })
@@ -31,15 +35,14 @@ export const follow = async (
       if (!user || name === userData.name)
         return { err: "somthing wrogn happend" };
 
-      user.followers?.push(userData._id);
-      userData.follwed?.push(user._id);
-
-      return user
-        .save()
-        .then(() => ({ result: "followed" }))
-        .catch((err) => {
-          //loging here
-          return { err: "somethignwrong happend" };
-        });
+      if (follow)
+        user.followers?.push(userData._id),
+          user
+            .save()
+            .then(() => ({ result: "followed" }))
+            .catch((err) => {
+              //loging here
+              return { err: "somethignwrong happend" };
+            });
     })
     .catch(() => ({ err: "somthing wrong happend" }));
