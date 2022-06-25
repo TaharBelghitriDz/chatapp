@@ -31,20 +31,15 @@ export const follow = async (
       if (!user || name === userData.name)
         return { err: "somthing wrogn happend" };
 
-      try {
-        user.followers?.push(userData._id);
-        userData.follwed?.push(user._id);
+      user.followers?.push(userData._id);
+      userData.follwed?.push(user._id);
 
-        return user
-          .save()
-          .then(() => ({ result: "followed" }))
-          .catch((err) => {
-            //loging here
-            return { err: "somethignwrong happend" };
-          });
-      } catch (err) {
-        //loging err here
-        return { err: "something wrong happend" };
-      }
+      return user
+        .save()
+        .then(() => ({ result: "followed" }))
+        .catch((err) => {
+          //loging here
+          return { err: "somethignwrong happend" };
+        });
     })
     .catch(() => ({ err: "somthing wrong happend" }));
