@@ -31,6 +31,10 @@ app.use(reqErrHandler);
 const io = new Server(server, socketIoConfog);
 io.path("/");
 
+io.use((_, e) => {
+  e();
+});
+
 io.on("connection", socket);
 
 export default server;

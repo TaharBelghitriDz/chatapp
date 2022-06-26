@@ -1,13 +1,15 @@
-import { Document, Model } from "mongoose";
+import { Document, FilterQuery, Model } from "mongoose";
 
-export interface messagesListSchema extends Document {
+export interface messagesListInterface {
   usersId: string[];
   seen: boolean | string[];
   messages: messageSchema[];
 }
 
-interface msgType {
-  fromId: string;
+export type messagesListSchema = Document & messagesListInterface;
+
+export interface messageInterafce {
+  fromTo: string[];
   date: string;
   content: string;
   repsponseOf?: string;
@@ -15,15 +17,12 @@ interface msgType {
   transfer?: string;
 }
 
-export interface messageSchema extends Document {
-  fromName: string;
-  date: string;
-  content: string;
-  repsponseOf?: string;
-  reaction?: string;
-  transfer?: string;
-}
+export type messageSchema = Document & messageInterafce;
 
 export interface messagesModelInterface extends Model<messagesListSchema> {
-  add: () => void;
+  newRoom: (args: FilterQuery<messagesListSchema>) => Promise<unknown>;
+  pushMessage: (
+    Query: FilterQuery<messagesListSchema> & { _id: string },
+    newMessage: messageInterafce
+  ) => Promise<messagesListInterface | undefined>;
 }
