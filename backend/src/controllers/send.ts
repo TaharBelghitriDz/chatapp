@@ -1,4 +1,5 @@
 import { msg } from "../models/messages.model";
+import { user } from "../models/user.model";
 import { sendType } from "../types.interfaces/messages.types";
 
 export const send: sendType = async (args, { emit }) => {
@@ -6,6 +7,7 @@ export const send: sendType = async (args, { emit }) => {
     emit("err", "you cant' send empty text");
   const msgs = await msg.findOne({ _id: args.room });
   const date = Date.now().toString();
+
   if (msgs)
     msg
       .pushMessage(
@@ -34,4 +36,7 @@ export const send: sendType = async (args, { emit }) => {
         // loging here
         emit("err", "somthing wrong happend");
       });
+  else {
+    msg.newRoom({ usersId: [] });
+  }
 };

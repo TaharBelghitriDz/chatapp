@@ -7,9 +7,10 @@ import { notFoundError, reqErrHandler } from "./middlewares/reqErorHandler";
 import config from "./config";
 import { createServer } from "http";
 import schema from "./schemas.graphql/index.scheams.graphql";
-import { Server, Socket } from "socket.io";
+import { Server } from "socket.io";
 import socketIoConfog from "./config/socketio.confog";
 import socket from "./routes/socketio.routes";
+import { checkToken } from "./middlewares/socketio.middleware";
 
 const app = express();
 const server = createServer(app);
@@ -31,9 +32,7 @@ app.use(reqErrHandler);
 const io = new Server(server, socketIoConfog);
 io.path("/");
 
-io.use((_, e) => {
-  e();
-});
+io.use(checkToken);
 
 io.on("connection", socket);
 
