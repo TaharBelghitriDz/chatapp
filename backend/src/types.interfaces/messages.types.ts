@@ -3,7 +3,7 @@ import { ExtendedError } from "socket.io/dist/namespace";
 
 interface sendPrms {
   room: string;
-  fromName: string;
+  to: string;
   content: string;
   transfer?: string;
   repsponseOf?: string;

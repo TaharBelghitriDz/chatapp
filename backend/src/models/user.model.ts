@@ -47,7 +47,7 @@ userSchema.statics.findUser = (
   clb: (args: dbResultType | null) => void
 ) =>
   user
-    .findOne({ args })
+    .findOne(args)
     .then(clb)
     .catch((err) => {
       console.log(err);

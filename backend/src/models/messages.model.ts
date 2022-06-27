@@ -29,18 +29,7 @@ MessagesListSchema.pre<messagesListSchema>(
   }
 );
 
-MessagesListSchema.statics.newRoom = (args) =>
-  new msg(args)
-    .save()
-    .then((result) => {
-      if (result) return { err: false };
-      else return { err: "something wrong happend" };
-    })
-    .catch((err) => {
-      //loging here
-      console.log(err);
-      return { err: "somthing wrong happend" };
-    });
+MessagesListSchema.statics.newRoom = (args) => new msg(args).save();
 
 MessagesListSchema.statics.pushMessage = (query, newMsg) =>
   msg.updateOne(query, { $push: { messages: newMsg } });

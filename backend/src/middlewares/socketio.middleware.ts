@@ -3,7 +3,7 @@ import { socketMidFun } from "../types.interfaces/messages.types";
 
 export const checkToken: socketMidFun = (socket, next) => {
   try {
-    console.log(socket.handshake.auth.token);
+    console.log(socket.handshake.auth);
     let token = socket.handshake.auth.token;
     if (!token) throw "no token";
 
