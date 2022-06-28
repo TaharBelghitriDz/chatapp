@@ -4,6 +4,7 @@ import { msg } from "../models/messages.model";
 import { user } from "../models/user.model";
 import {
   reactionType,
+  removeMessagetype,
   seenType,
   sendType,
 } from "../types.interfaces/messages.types";
@@ -25,7 +26,7 @@ export const send: sendType = async (args, socket) => {
       .pushMessage(
         { _id: args.room },
         {
-          fromTo: msgs.usersId,
+          from: senderId.str,
           date,
           content: args.content,
           reaction: "no",
@@ -80,7 +81,6 @@ export const reaction: reactionType = async (args, socket) => {
     {
       _id: args.room,
       "messages._id": args.msgId,
-      "messages.fromTo": senderId.str,
     },
     "messages.$"
   );
@@ -116,6 +116,35 @@ export const seen: seenType = async ({ room }, socket) => {
   msgs
     .save()
     .then(() => socket.emit("seen", { seen: msgs.seen }))
+    .catch((err) => {
+      //loging here
+      socket.emit("err", "something wrong happend");
+    });
+};
+
+export const remove: removeMessagetype = async ({ room, msgId }, socket) => {
+  const senderId: any = tokenVrfy(socket.handshake.auth.token);
+
+  const removedMsg =
+    validateId(room) &&
+    validateId(msgId) &&
+    (await msg.findOne(
+      {
+        _id: room,
+        usersId: senderId.str,
+        "messages._id": msgId,
+        "messages.from": senderId.str,
+      },
+      "messages.$"
+    ));
+
+  if (!removedMsg) return socket.emit("err", "something wrong happend");
+
+  // i won't remove it to let the other user see "message removed" like facebook
+  removedMsg.messages[0].content = "";
+  removedMsg
+    .save()
+    .then(() => socket.emit("remove", "removed"))
     .catch((err) => {
       //loging here
       socket.emit("err", "something wrong happend");

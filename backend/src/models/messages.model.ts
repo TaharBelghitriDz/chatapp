@@ -6,7 +6,7 @@ import {
 } from "../schemas.mongo/messages.mongo.schema";
 
 const MessageSchema = new Schema<messageSchema>({
-  fromTo: [String],
+  from: String,
   date: String,
   content: String,
   repsponseOf: String,

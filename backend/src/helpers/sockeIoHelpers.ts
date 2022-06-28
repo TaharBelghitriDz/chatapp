@@ -15,6 +15,13 @@ export const yupSchemasValidation: Record<string, any> = {
     msgId: yup.string().required().max(30).min(20),
     reaction: yup.string().required().max(10).min(1),
   }),
+  remove: yup.object().shape({
+    room: yup.string().required().max(30).min(20),
+    msgId: yup.string().required().max(30).min(20),
+  }),
+  seen: yup.object().shape({
+    room: yup.string().required().max(30).min(20),
+  }),
 };
 
 export const validateEvnt = async (target: string, data: any) => {

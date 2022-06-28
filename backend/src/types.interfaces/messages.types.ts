@@ -22,6 +22,11 @@ export type reactionType = (prms: reactionPrms, socket: Socket) => void;
 
 export type seenType = (prms: { room: string }, socket: Socket) => void;
 
+export type removeMessagetype = (
+  prms: { room: string; msgId: string },
+  socket: Socket
+) => void;
+
 export type socketMidFun = (
   socket: Socket,
   next: (err?: ExtendedError | undefined) => void

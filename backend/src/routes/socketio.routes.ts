@@ -5,6 +5,8 @@ import { validateEvnt } from "../helpers/sockeIoHelpers";
 const events = (data: any, socket: Socket): Record<string, any> => ({
   send: send(data, socket),
   reaction: reaction(data, socket),
+  remove: reaction(data, socket),
+  seen: reaction(data, socket),
 });
 
 const socket = (socket: Socket) => {

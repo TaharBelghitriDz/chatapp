@@ -9,7 +9,7 @@ export interface messagesListInterface {
 export type messagesListSchema = Document & messagesListInterface;
 
 export interface messageInterafce {
-  fromTo: string[];
+  from: string;
   date: string;
   content: string;
   repsponseOf?: string;
