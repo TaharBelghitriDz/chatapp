@@ -2,7 +2,7 @@ import { Document, FilterQuery, Model } from "mongoose";
 
 export interface messagesListInterface {
   usersId: string[];
-  seen: boolean | string[];
+  seen: string[];
   messages: messageSchema[];
 }
 

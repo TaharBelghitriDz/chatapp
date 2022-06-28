@@ -16,14 +16,14 @@ const MessageSchema = new Schema<messageSchema>({
 
 const MessagesListSchema = new Schema<messagesListSchema>({
   usersId: [String],
-  seen: Boolean || [String],
+  seen: [String],
   messages: [MessageSchema],
 });
 
 MessagesListSchema.pre<messagesListSchema>(
   "validate",
   function (this: messagesListSchema, next) {
-    this.seen = false;
+    this.seen = [];
     next();
   }
 );

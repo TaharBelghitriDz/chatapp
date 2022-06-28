@@ -2,7 +2,11 @@ import { tokenVrfy } from "../helpers/jwt";
 import { validateId } from "../helpers/sockeIoHelpers";
 import { msg } from "../models/messages.model";
 import { user } from "../models/user.model";
-import { reactionType, sendType } from "../types.interfaces/messages.types";
+import {
+  reactionType,
+  seenType,
+  sendType,
+} from "../types.interfaces/messages.types";
 
 export const send: sendType = async (args, socket) => {
   if (args.content?.split(" ").join("") === "")
@@ -90,6 +94,28 @@ export const reaction: reactionType = async (args, socket) => {
   message
     .save()
     .then(() => socket.emit("reaction", "reacted"))
+    .catch((err) => {
+      //loging here
+      socket.emit("err", "something wrong happend");
+    });
+};
+
+export const seen: seenType = async ({ room }, socket) => {
+  const senderId: any = tokenVrfy(socket.handshake.auth.token);
+
+  const msgs =
+    validateId(room) &&
+    (await msg.findOne({ _id: room, usersId: senderId.str }));
+
+  if (!msgs) return socket.emit("err", "something wrong happend");
+
+  if (msgs.seen.includes(senderId))
+    return socket.emit("seen", { seen: msgs.seen });
+
+  msgs.seen.push(senderId.str);
+  msgs
+    .save()
+    .then(() => socket.emit("seen", { seen: msgs.seen }))
     .catch((err) => {
       //loging here
       socket.emit("err", "something wrong happend");
