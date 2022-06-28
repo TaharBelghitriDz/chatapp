@@ -6,10 +6,19 @@ interface sendPrms {
   to: string;
   content: string;
   transfer?: string;
+  picture?: string;
   repsponseOf?: string;
 }
 
 export type sendType = (prms: sendPrms, socket: Socket) => void;
+
+interface reactionPrms {
+  room: string;
+  reaction: string;
+  msgId: string;
+}
+
+export type reactionType = (prms: reactionPrms, socket: Socket) => void;
 
 export type socketMidFun = (
   socket: Socket,
