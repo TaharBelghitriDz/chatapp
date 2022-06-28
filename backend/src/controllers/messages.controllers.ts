@@ -5,17 +5,16 @@ import { user } from "../models/user.model";
 import { reactionType, sendType } from "../types.interfaces/messages.types";
 
 export const send: sendType = async (args, socket) => {
-  const { emit, handshake } = socket;
-  if (args.content.split(" ").join("") === "")
-    emit("err", "you cant' send empty text");
+  if (args.content?.split(" ").join("") === "")
+    socket.emit("err", "you cant' send empty text");
 
   const msgs = validateId(args.room) && (await msg.findOne({ _id: args.room }));
 
   const otherUser = await user.findOne({ name: args.to });
-  const senderId: any = tokenVrfy(handshake.auth.token);
+  const senderId: any = tokenVrfy(socket.handshake.auth.token);
 
   const date = Date.now().toString();
-  if (!otherUser) return emit("err", "something wrong happend");
+  if (!otherUser) return socket.emit("err", "something wrong happend");
 
   if (msgs)
     msg
@@ -25,10 +24,13 @@ export const send: sendType = async (args, socket) => {
           fromTo: msgs.usersId,
           date,
           content: args.content,
+          reaction: "no",
+          repsponseOf: "no",
+          transfer: "no",
         }
       )
       .then((rslt) => {
-        if (!rslt) emit("err", "somthing wrong happend");
+        if (!rslt) socket.emit("err", "somthing wrong happend");
         else
           socket.emit("send", {
             content: args.content,
@@ -38,7 +40,7 @@ export const send: sendType = async (args, socket) => {
       .catch((err) => {
         // loging here
         console.log(err);
-        emit("err", "somthing wrong happend");
+        socket.emit("err", "somthing wrong happend");
       });
   else {
     const checkMessages = await msg.findOne({
@@ -59,10 +61,37 @@ export const send: sendType = async (args, socket) => {
         .catch((err) => {
           //loging here
           console.log(err);
-          emit("err", "somethign wrong happend");
+          socket.emit("err", "somethign wrong happend");
         });
     else send({ ...args, room: `${checkMessages._id}` }, socket);
   }
 };
 
-const reaction: reactionType = () => {};
+export const reaction: reactionType = async (args, socket) => {
+  //check reaction if it's valid emojis and conatin only emojis
+
+  const senderId: any = tokenVrfy(socket.handshake.auth.token);
+
+  const mongoQuery = msg.findOne(
+    {
+      _id: args.room,
+      "messages._id": args.msgId,
+      "messages.fromTo": senderId.str,
+    },
+    "messages.$"
+  );
+
+  const room =
+    validateId(args.room) && validateId(args.msgId) && (await mongoQuery);
+  if (!room) return socket.emit("err", "unvalid room");
+
+  const message = room.messages[0];
+  message.reaction = args.reaction;
+  message
+    .save()
+    .then(() => socket.emit("reaction", "reacted"))
+    .catch((err) => {
+      //loging here
+      socket.emit("err", "something wrong happend");
+    });
+};

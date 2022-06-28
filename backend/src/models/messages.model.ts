@@ -24,7 +24,6 @@ MessagesListSchema.pre<messagesListSchema>(
   "validate",
   function (this: messagesListSchema, next) {
     this.seen = false;
-    this.messages = [];
     next();
   }
 );

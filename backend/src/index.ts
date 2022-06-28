@@ -11,6 +11,8 @@ import { Server } from "socket.io";
 import socketIoConfog from "./config/socketio.confog";
 import socket from "./routes/socketio.routes";
 import { checkToken } from "./middlewares/socketio.middleware";
+import { msg } from "./models/messages.model";
+
 const app = express();
 const server = createServer(app);
 
@@ -32,5 +34,16 @@ const io = new Server(server, socketIoConfog);
 io.path("/");
 io.use(checkToken);
 io.on("connection", socket);
+
+msg.findOne(
+  {
+    "messages._id": "62ba3fef2e71c5ec95d7ba5a",
+    "messages.fromTo": "62ba076ba28d11a510971608",
+  },
+  "messages.$",
+  (e: any, r: any) => {
+    console.log(r.messages[0]);
+  }
+);
 
 export default server;
