@@ -22,10 +22,10 @@ const dev = {
 const test = {
   app: {
     port: process.env.PORT,
-    SECRETKEY: process.env.SECRETKEY,
+    SECRETKEY: process.env.SECRETKEY as string,
   },
   db: {
-    url: process.env.MONGOOSE_URL,
+    url: process.env.MONGOOSE_URL as string,
   },
   graphql: {
     graphiql: true,
@@ -35,10 +35,10 @@ const test = {
 const production = {
   app: {
     port: process.env.PORT,
-    SECRETKEY: process.env.SECRETKEY,
+    SECRETKEY: process.env.SECRETKEY as string,
   },
   db: {
-    url: process.env.MONGOOSE_URL,
+    url: process.env.MONGOOSE_URL as string,
   },
   graphql: {
     graphiql: false,
