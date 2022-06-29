@@ -11,8 +11,6 @@ const events = (data: any, socket: Socket): Record<string, any> => ({
 
 const socket = (socket: Socket) => {
   socket.onAny(async (target: string, StringData: any) => {
-    console.log(target);
-
     try {
       const data = JSON.parse(StringData);
       if (typeof data !== "object")
@@ -20,8 +18,6 @@ const socket = (socket: Socket) => {
 
       const valid = await validateEvnt(target, data);
 
-      console.log(valid);
-      console.log(data);
       if (!valid) socket.emit("err", "something wrong happend");
       else events(data, socket)[target];
     } catch (err) {
