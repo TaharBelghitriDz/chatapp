@@ -7,6 +7,12 @@ type action {
   result: Boolean
 }
 
+type File {
+  filename: String!
+  mimetype: String!
+  encoding: String!
+}
+
 type userDetails {
   name: String
   cover: String
@@ -14,6 +20,8 @@ type userDetails {
   follwed: Boolean
   err: String
 }
+
+scalar Upload
 
 type Mutation {
   login(email: String, password: String): auth
@@ -28,4 +36,6 @@ type Mutation {
   findUser(token: String, name: String): userDetails
 
   follow(token: String, name: String, follow: Boolean): action
+
+  singleUpload(file: Upload!): File!
 }
