@@ -28,3 +28,15 @@ export type GraphFindUserType = resolverType<
   { name: string },
   returnedUserInterface
 >;
+
+interface file {
+  createReadStream: any;
+  filename: any;
+  mimetype: any;
+  encoding: any;
+}
+
+export type uploadCoverType = resolverType<
+  { file: file },
+  { err?: string; result?: string }
+>;
