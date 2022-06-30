@@ -33,10 +33,6 @@ export const follow = async (
     .findOne({ name })
     .then(async (user: userSchemaInterface | null) => {
       if (!user || name === userData.name) {
-        console.log("here");
-        console.log(name);
-        console.log(userData.name);
-
         return { err: "somthing wrogn happend" };
       }
       if (follow)
