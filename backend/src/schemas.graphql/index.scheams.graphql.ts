@@ -6,6 +6,7 @@ import { join } from "path";
 import { login, signup } from "../resolvers/auth";
 import { findUser, follow } from "../resolvers/relations.resolver";
 import { checkUser } from "../middlewares/graphql.middlewares";
+import { uploadCover } from "../resolvers/parms.resolver";
 
 const schemaLoad = loadSchemaSync(
   [join(__dirname, "./query.graphql"), join(__dirname, "./mutation.graphql")],
@@ -19,12 +20,14 @@ const resolver = {
   login,
   findUser,
   follow,
+  uploadCover,
 };
 
 const middlewares: IMiddleware<typeof resolver> = {
   Mutation: {
     findUser: checkUser,
     follow: checkUser,
+    uploadCover: checkUser,
   },
 };
 
