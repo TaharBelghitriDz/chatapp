@@ -10,11 +10,9 @@ const events = (data: any, socket: Socket): Record<string, any> => ({
 });
 
 const socket = (socket: Socket) => {
-  socket.onAny(async (target: string, StringData: any) => {
+  socket.onAny(async (target: string, data: any) => {
     try {
-      const data = JSON.parse(StringData);
-      if (typeof data !== "object")
-        socket.emit("err", "somthing wrong happend");
+      if (typeof data !== "object") data = JSON.parse(data);
 
       const valid = await validateEvnt(target, data);
 
@@ -22,7 +20,8 @@ const socket = (socket: Socket) => {
       else events(data, socket)[target];
     } catch (err) {
       //logign here
-      socket.emit("err", "somthing wrong happend");
+      console.log(err);
+      socket.emit("err", "something wrong happend #1");
     }
   });
 };
