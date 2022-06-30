@@ -37,5 +37,5 @@ type Mutation {
 
   follow(token: String, name: String, follow: Boolean): action
 
-  setCover(file: Upload!): action
+  uploadCover(file: Upload!): action
 }
