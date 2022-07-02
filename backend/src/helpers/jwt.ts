@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import config from "../config";
+import config from "../../config";
 
 export const tokenVrfy = (token: string, clb?: (err: any, rslt: any) => void) =>
   jwt.verify(token, config.app.SECRETKEY as string, clb);

@@ -4,7 +4,7 @@
   "description": "",
   "main": "./src/index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [
     "typescript",
@@ -18,6 +18,7 @@
     "@graphql-tools/load": "^7.5.13",
     "@graphql-tools/schema": "^8.3.13",
     "@types/cors": "^2.8.12",
+    "@types/graphql-upload": "^8.0.11",
     "@types/jsonwebtoken": "^8.5.8",
     "@types/spdy": "^3.4.5",
     "bcryptjs": "^2.4.3",
@@ -27,6 +28,7 @@
     "express-graphql": "^0.12.0",
     "graphql": "^16.5.0",
     "graphql-middleware": "^6.1.28",
+    "graphql-upload": "^15.0.2",
     "helmet": "^5.1.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.5",
@@ -38,7 +40,10 @@
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
     "@types/express": "^4.17.13",
+    "@types/jest": "^28.1.4",
     "@types/node": "^17.0.38",
+    "jest": "^28.1.2",
+    "ts-jest": "^28.0.5",
     "ts-node": "^10.8.0",
     "typescript": "^4.7.2"
   }

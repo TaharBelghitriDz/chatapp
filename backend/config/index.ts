@@ -45,7 +45,7 @@ const production = {
   },
 };
 
-const configs = {
+const configs: Record<NODE_ENV, any> = {
   dev,
   test,
   production,

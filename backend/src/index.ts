@@ -1,14 +1,14 @@
 import express from "express";
 import helmet from "helmet";
 import cors from "cors";
-import "./config/mongo.config";
+import "../config/mongo.config";
 import { graphqlHTTP } from "express-graphql";
 import { notFoundError, reqErrHandler } from "./middlewares/reqErorHandler";
-import config from "./config";
+import config from "../config";
 import { createServer } from "http";
 import schema from "./schemas.graphql/index.scheams.graphql";
 import { Server } from "socket.io";
-import socketIoConfog from "./config/socketio.confog";
+import socketIoConfog from "../config/socketio.confog";
 import socket from "./routes/socketio.routes";
 import { checkToken } from "./middlewares/socketio.middleware";
 import { msg } from "./models/messages.model";
