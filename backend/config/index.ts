@@ -1,11 +1,13 @@
-import { config } from "dotenv";
-config({ path: "./.env" });
+import dotenv from "dotenv";
+dotenv.config();
 
 type NODE_ENV = "test" | "dev" | "production";
 
-// i case you didn't setup dotenv file it's gonna work in dev mode
 const env =
-  (process.env.NODE_ENV as NODE_ENV) || (console.log("dev mode"), "dev");
+  (console.log("mood " + process.env.NODE_ENV),
+  (process.env.NODE_ENV as NODE_ENV) || "dev");
+
+console.log("env " + env);
 
 const dev = {
   app: {
