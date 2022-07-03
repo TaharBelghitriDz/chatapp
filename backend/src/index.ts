@@ -1,7 +1,7 @@
 import express from "express";
 import helmet from "helmet";
 import cors from "cors";
-import "../config/mongo.config";
+import db from "../config/mongo.config";
 import { graphqlHTTP } from "express-graphql";
 import { notFoundError, reqErrHandler } from "./middlewares/reqErorHandler";
 import config from "../config";
@@ -14,6 +14,7 @@ import { checkToken } from "./middlewares/socketio.middleware";
 import { msg } from "./models/messages.model";
 import { graphqlUploadExpress } from "graphql-upload";
 
+async () => await db;
 const app = express();
 const server = createServer(app);
 
@@ -36,17 +37,5 @@ const io = new Server(server, socketIoConfog);
 io.path("/");
 io.use(checkToken);
 io.on("connection", socket);
-
-// msg.findOne({}, "_id", (e: any, r: any) => {
-//   console.log(`${r._id}`);
-// });
-
-const m = () => "hi";
-
-const m1 = () => {
-  console.log("works here");
-};
-
-console.log(m);
 
 export default server;
