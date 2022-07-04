@@ -1,10 +1,16 @@
+import { msg } from "../models/messages.model";
 import { user } from "../models/user.model";
-import { userSchemaInterface } from "../schemas.mongo/user.mongo.schema";
+import {
+  dbResultType,
+  messagesResultType,
+  userDataInterface,
+  userSchemaInterface,
+} from "../schemas.mongo/user.mongo.schema";
 
 export const findUser = async (_: any, { name }: any) =>
   await user
     .findOne({ name })
-    .then((user: userSchemaInterface | null) => {
+    .then((user: userDataInterface | null) => {
       if (!user) return { err: "no user found" };
       else {
         let { name, cover, followers, follwed } = user;
@@ -60,3 +66,9 @@ export const follow = async (
           });
     })
     .catch(() => ({ err: "somthing wrong happend" }));
+
+export const getMessages = (_: any, { userData }: { userData: dbResultType }) =>
+  msg
+    .find({ usersId: userData._id })
+    .then((messages: messagesResultType[] | []) => ({ messages }))
+    .catch(() => ({ err: "some thing wrong happend" }));

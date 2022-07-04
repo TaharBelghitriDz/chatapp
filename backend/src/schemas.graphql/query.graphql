@@ -1,3 +1,21 @@
+type OneMessage {
+  _id: String
+  from: String
+  date: String
+  content: String
+  repsponseOf: String
+  reaction: String
+  transfer: String
+}
+
+type messages {
+  err: String
+  _id: [String]
+  seen: [String]
+  messages: [OneMessage]
+}
+
 type Query {
   hi: String
+  getMessages(token: String): messages
 }

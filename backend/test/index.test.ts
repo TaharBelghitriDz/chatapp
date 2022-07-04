@@ -3,6 +3,11 @@ import supertest from "supertest";
 import "../config/test.config";
 import "../config/mongo.config";
 import mongoConfig from "../config/mongo.config";
+import { createServer } from "http";
+import { Server } from "socket.io";
+import Client from "socket.io-client";
+import { Socket } from "dgram";
+import { DefaultEventsMap } from "@socket.io/component-emitter";
 
 describe("graphql is good !", () => {
   beforeAll(async () => await mongoConfig);
@@ -42,4 +47,25 @@ describe("graphql is good !", () => {
         done();
       });
   });
+});
+
+describe("socket io =>", () => {
+  // let io: Server, serverSocket;
+  // let clientSocket: Socket<DefaultEventsMap, DefaultEventsMap>;
+  // beforeAll((done) => {
+  //   const httpServer = createServer();
+  //   const io = new Server(httpServer);
+  //   httpServer.listen(() => {
+  //     const port = httpServer.address() || 1000;
+  //     clientSocket = Client(`http://localhost:${port}`);
+  //     io.on("connection", (socket: any) => {
+  //       serverSocket = socket;
+  //     });
+  //     clientSocket.on("connect", done);
+  //   });
+  // });
+  // afterAll(() => {
+  //   io.close();
+  //   clientSocket.close();
+  // });
 });

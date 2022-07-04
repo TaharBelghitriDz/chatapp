@@ -21,6 +21,23 @@ type userDetails {
   err: String
 }
 
+type OneMessage {
+  _id: String
+  from: String
+  date: String
+  content: String
+  repsponseOf: String
+  reaction: String
+  transfer: String
+}
+
+type messages {
+  err: String
+  _id: [String]
+  seen: [String]
+  messages: [OneMessage]
+}
+
 scalar Upload
 
 type Mutation {

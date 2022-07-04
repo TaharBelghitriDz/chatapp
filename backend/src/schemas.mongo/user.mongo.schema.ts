@@ -1,4 +1,5 @@
 import { Callback, Document, Model } from "mongoose";
+import { messagesListSchema } from "./messages.mongo.schema";
 
 export interface userDataInterface {
   name: string;
@@ -21,6 +22,10 @@ export interface userModelINterface extends Model<userSchemaInterface> {
 export type dbResultType = {
   _id: string;
 } & userSchemaInterface;
+
+export type messagesResultType = {
+  _id: string;
+} & messagesListSchema;
 
 export interface findUserInterface {
   _id?: string;
