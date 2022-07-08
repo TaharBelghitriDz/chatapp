@@ -1,6 +1,7 @@
 import { hash } from "bcryptjs";
 import { model, Schema } from "mongoose";
 import { tokenSign } from "../helpers/jwt";
+import { AvatarGenerator } from "random-avatar-generator";
 import {
   dbResultType,
   findUserInterface,
@@ -21,7 +22,16 @@ userSchema.pre<userSchemaInterface>(
   "validate",
   function (this: userSchemaInterface, next) {
     //random pics
-    // cover
+    let newAvatar = new AvatarGenerator().generateRandomAvatar();
+    const unwantedString = newAvatar
+      .split("?")[1]
+      .split("&")
+      .slice(0, 2)
+      .join("&");
+    newAvatar = newAvatar.replace(unwantedString, "");
+
+    this.cover = newAvatar;
+
     hash(this.password, 8, (err, hash) => {
       if (err) throw err;
       this.password = hash;

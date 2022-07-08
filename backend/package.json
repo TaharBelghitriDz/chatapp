@@ -33,6 +33,7 @@
     "helmet": "^5.1.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.5",
+    "random-avatar-generator": "^2.0.0",
     "socket.io": "^4.5.1",
     "socket.io-client": "^4.5.1",
     "spdy": "^4.0.2",
