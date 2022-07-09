@@ -1,12 +1,12 @@
 import type { NextPage } from "next";
 
-import styles from "../styles/Home.module.css";
-
 import { io, Manager, Socket } from "socket.io-client";
 import { useEffect, useState } from "react";
 
-import client from "../config/graphql";
+import client from "../../config/graphql";
 import { gql, useQuery, useMutation } from "@apollo/client";
+import { useRouter } from "next/router";
+import HomeComponent from "../components/home.compoent";
 
 // const getData = async () => {
 //   const { data } = await client.mutate({
@@ -58,7 +58,7 @@ manager.on("err", (err) => {
 
 socket._autoConnect = false;
 
-manager.emit("hi", "");
+manager.emit("hi", { hi: "hi" });
 
 // const client = io("http://localhost:5005/", {
 //   auth: {
@@ -90,8 +90,11 @@ type socketState = Socket | any;
 const Home: NextPage = () => {
   const [mutationFunction, { data, loading, error, reset }] =
     useMutation(Query);
-  mutationFunction();
-  console.log(mutationFunction());
+  // mutationFunction();
+  console.log(data);
+  console.log("render the main");
+
+  // console.log(mutationFunction());
 
   //const [socket, setSocket] = useState<string | null>(null);
 
@@ -120,16 +123,13 @@ const Home: NextPage = () => {
   //   console.log(err);
   // });
 
-  return (
-    <div
-      onClick={() => {
-        //setSocket("hi");
-        manager.emit("hi", "hi");
-      }}
-    >
-      hii from me
-    </div>
-  );
+  // if (typeof localStorage !== "undefined") {
+  //   return <div>Messages</div>;
+  // } else
+
+  const router = useRouter();
+
+  return <HomeComponent />;
 };
 
 export default Home;
