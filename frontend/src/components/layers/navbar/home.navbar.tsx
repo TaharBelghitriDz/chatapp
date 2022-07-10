@@ -1,4 +1,10 @@
-import { Flex, HStack, Text } from "@chakra-ui/react";
+import {
+  chakra,
+  ChakraStyledOptions,
+  Flex,
+  HStack,
+  Text,
+} from "@chakra-ui/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -17,20 +23,35 @@ const HomeNavbar = () => {
   return (
     <Flex
       flexDirection="row"
-      bg="green"
       px="5vw"
       h="50px"
       justifyContent="space-between"
       alignItems="center"
       fontWeight="light"
       fontSize="20px"
+      pos="fixed"
+      top="0"
+      left="0"
+      w="100vw"
     >
-      <Text fontSize="36px"> ola </Text>
+      <Text fontSize="36px" fontWeight="bold">
+        ola
+      </Text>
       <HStack spacing="30px">
-        <Link href="#">blog</Link>
-        <Link href="#">about us</Link>
+        <Link href="#">
+          <Text cursor="pointer" _hover={{ color: "#A41623" }}>
+            blog
+          </Text>
+        </Link>
+        <Link href="#">
+          <Text cursor="pointer" _hover={{ color: "#A41623" }}>
+            about us
+          </Text>
+        </Link>
         <Link href="#" tabIndex={-1}>
-          {view}
+          <Text cursor="pointer" _hover={{ color: "#A41623" }}>
+            {view}
+          </Text>
         </Link>
       </HStack>
     </Flex>
