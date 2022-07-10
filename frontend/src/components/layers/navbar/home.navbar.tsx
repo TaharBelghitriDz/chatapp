@@ -1,23 +1,18 @@
-import {
-  chakra,
-  ChakraStyledOptions,
-  Flex,
-  HStack,
-  Text,
-} from "@chakra-ui/react";
+import { Flex, HStack, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const HomeNavbar = () => {
-  const [view, setView] = useState("");
+  const [view, setView] = useState({ place: "", url: "" });
   useEffect(() => {
-    setView(
+    const place =
       typeof localStorage !== "undefined"
         ? localStorage.getItem("token")
           ? "chat"
           : "login or signup"
-        : "login & signup"
-    );
+        : "login & signup";
+
+    setView({ place, url: place !== "chat" ? "/login" : "chat" });
   }, []);
 
   return (
@@ -48,9 +43,9 @@ const HomeNavbar = () => {
             about us
           </Text>
         </Link>
-        <Link href="#" tabIndex={-1}>
+        <Link href={view.url} tabIndex={-1}>
           <Text cursor="pointer" _hover={{ color: "#A41623" }}>
-            {view}
+            {view.place}
           </Text>
         </Link>
       </HStack>

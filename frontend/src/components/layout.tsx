@@ -1,3 +1,4 @@
+import { Box } from "@chakra-ui/react";
 import { ReactNode } from "react";
 import { useWindowSize } from "../hooks/window.hook";
 import Footer from "./layers/footer";
@@ -9,7 +10,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <Navbar />
-      <div children={children} />
+      <Box pt="50px" children={children} />
       <Footer />
     </>
   );

@@ -32,7 +32,7 @@ const login: NextComponentType = () => {
     console.log("token / " + token);
     localStorage.setItem("token", token);
     console.log(localStorage.getItem("token"));
-    router.push("/message");
+    router.push("/chat");
   }
 
   if (typeof signupDetails.data !== "undefined") {
@@ -41,7 +41,7 @@ const login: NextComponentType = () => {
     console.log("token / " + token);
     localStorage.setItem("token", token);
     console.log(localStorage.getItem("token"));
-    router.push("/message");
+    router.push("/chat");
   }
 
   if (loginDetails.loading) return <div>loading</div>;
