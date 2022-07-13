@@ -10,7 +10,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <Navbar />
-      <Box pt="50px" children={children} />
+      <Box children={children} />
       <Footer />
     </>
   );
