@@ -6,8 +6,8 @@ const theme = extendTheme({
     global,
   },
   fonts: {
-    heading: `'Open Sans', sans-serif`,
-    body: `'Outfit', sans-serif`,
+    body: `'Open Sans', sans-serif`,
+    heading: `'Lora', serif`,
   },
 });
 
