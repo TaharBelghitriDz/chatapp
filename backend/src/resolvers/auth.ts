@@ -10,14 +10,15 @@ export const signup: GraphSignUpType = async (
   _,
   { checkPassword, password, email, name }
 ) => {
-  if (password !== checkPassword) return { err: "check the password again" };
+  if (password !== checkPassword)
+    return { err: "password.check the password again" };
 
-  if (!validEmail(email)) return { err: "unvalid email " };
+  if (!validEmail(email)) return { err: "email.unvalid email #1" };
 
   if (password.length < 8 || password.length > 30)
-    return { err: "unvalid password" };
+    return { err: "password.unvalid password" };
 
-  if (!validName(name)) return { err: "unvalid name" };
+  if (!validName(name)) return { err: "name.unvalid name" };
   return user.findUser({ email, name }, (result) => {
     if (result)
       return {
@@ -29,13 +30,13 @@ export const signup: GraphSignUpType = async (
 };
 
 export const login: GraphLoginType = async (_, { email, password }) => {
-  if (!validEmail(email)) return { err: "unvalid email " };
+  if (!validEmail(email)) return { err: "email.unvalid email " };
 
   if (password.length < 8 || password.length > 30)
-    return { err: "unvalid password" };
+    return { err: "password.unvalid password" };
 
   return user.findUser({ email }, (result) => {
     if (result) return { token: tokenSign(result._id) };
-    else return { err: "unvalid email" };
+    else return { err: "email.unvalid email" };
   });
 };
