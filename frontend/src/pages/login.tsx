@@ -1,8 +1,9 @@
 import { gql, useMutation } from "@apollo/client";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, HStack, Text, VStack } from "@chakra-ui/react";
 import { NextComponentType } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { LoginForms, LoginInfos } from "../components/login.components";
 import { loginMutation, signupMutation } from "../shcemas/mutation";
 import { getMessages } from "../shcemas/query";
 
@@ -44,87 +45,12 @@ const login: NextComponentType = () => {
     router.push("/chat");
   }
 
-  if (loginDetails.loading) return <div>loading</div>;
-  else
-    return (
-      <div>
-        <Flex
-          flexDir="row"
-          bg="gray"
-          p="20px"
-          justifyContent="space-between"
-          alignItems="center"
-          w="100%"
-        >
-          <span
-            onClick={() => {
-              console.log(loginState);
-              loginFun({ variables: loginState });
-            }}
-          >
-            login
-          </span>
-          <input
-            placeholder="email"
-            value={loginState.email}
-            onChange={({ target: { value } }) =>
-              setLogin((e) => ({ ...e, email: value }))
-            }
-          />
-          <input
-            placeholder="password"
-            value={loginState.password}
-            onChange={({ target: { value } }) =>
-              setLogin((e) => ({ ...e, password: value }))
-            }
-          />
-        </Flex>
-        <Flex
-          flexDir="row"
-          bg="gray.100"
-          p="20px"
-          justifyContent="space-between"
-          alignItems="center"
-          w="100%"
-        >
-          <div
-            onClick={() => {
-              signupFun({ variables: signupState });
-            }}
-          >
-            signup
-          </div>
-          <input
-            placeholder="name"
-            value={signupState.name}
-            onChange={({ target: { value } }) =>
-              setSighnup((e) => ({ ...e, name: value }))
-            }
-          />
-          <input
-            placeholder="email"
-            value={signupState.email}
-            onChange={({ target: { value } }) =>
-              setSighnup((e) => ({ ...e, email: value }))
-            }
-          />
-          <input
-            placeholder="password"
-            value={signupState.password}
-            onChange={({ target: { value } }) =>
-              setSighnup((e) => ({ ...e, password: value }))
-            }
-          />
-          <input
-            placeholder="confirm password"
-            value={signupState.checkPassword}
-            onChange={({ target: { value } }) =>
-              setSighnup((e) => ({ ...e, checkPassword: value }))
-            }
-          />
-        </Flex>
-      </div>
-    );
+  return (
+    <HStack justifyContent="space-between" w="100%">
+      <LoginInfos />
+      <LoginForms />
+    </HStack>
+  );
 };
 
 export default login;
