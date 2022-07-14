@@ -2,7 +2,7 @@ import { gql, useMutation, useQuery } from "@apollo/client";
 import { NextPage } from "next";
 import { useEffect } from "react";
 import client from "../../config/graphql";
-import { loadSchema } from "../assets/graphql";
+import { loadSchema } from "../helper/graphql";
 import { getMessages } from "../shcemas/query";
 
 const Chat: NextPage = (props) => {
