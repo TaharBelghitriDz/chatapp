@@ -1,5 +1,5 @@
 import { hash } from "bcryptjs";
-import { model, Schema } from "mongoose";
+import { FilterQuery, model, Schema } from "mongoose";
 import { tokenSign } from "../helpers/jwt";
 import { AvatarGenerator } from "random-avatar-generator";
 import {
@@ -53,7 +53,7 @@ userSchema.statics.addUser = (args: userSchemaInterface) =>
     });
 
 userSchema.statics.findUser = (
-  args: findUserInterface,
+  args: FilterQuery<findUserInterface>,
   clb: (args: dbResultType | null) => void
 ) =>
   user

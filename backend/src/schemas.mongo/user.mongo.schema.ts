@@ -1,4 +1,4 @@
-import { Callback, Document, Model } from "mongoose";
+import { Callback, Document, FilterQuery, Model } from "mongoose";
 import { messagesListSchema } from "./messages.mongo.schema";
 
 export interface userDataInterface {
@@ -14,7 +14,7 @@ export type userSchemaInterface = Document & userDataInterface;
 export interface userModelINterface extends Model<userSchemaInterface> {
   addUser: (a: findUserInterface & { password: string }) => any;
   findUser: (
-    args: findUserInterface,
+    args: FilterQuery<findUserInterface>,
     clb: (args: dbResultType | null) => void
   ) => Promise<any>;
 }

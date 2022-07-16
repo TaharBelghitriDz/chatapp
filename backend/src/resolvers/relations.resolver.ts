@@ -67,8 +67,13 @@ export const follow = async (
     })
     .catch(() => ({ err: "somthing wrong happend" }));
 
-export const getMessages = (_: any, { userData }: { userData: dbResultType }) =>
+export const getMessages = (
+  _: any,
+  { userData }: { userData: dbResultType }
+) => (
+  console.log("get messages"),
   msg
     .find({ usersId: userData._id })
     .then((messages: messagesResultType[] | []) => ({ messages }))
-    .catch(() => ({ err: "some thing wrong happend" }));
+    .catch(() => ({ err: "something wrong happend" }))
+);

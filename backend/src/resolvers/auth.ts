@@ -13,16 +13,19 @@ export const signup: GraphSignUpType = async (
   if (password !== checkPassword)
     return { err: "password.check the password again" };
 
-  if (!validEmail(email)) return { err: "email.unvalid email #1" };
+  if (!validEmail(email)) return { err: "email.unvalid email " };
 
   if (password.length < 8 || password.length > 30)
-    return { err: "password.unvalid password" };
+    return { err: "password.check your  password" };
 
-  if (!validName(name)) return { err: "name.unvalid name" };
-  return user.findUser({ email, name }, (result) => {
+  if (!validName(name)) return { err: "name.name unvalid name" };
+
+  return user.findUser({ $or: [{ name }, { email }] }, (result) => {
     if (result)
       return {
-        err: (result.name === name ? "name" : "email") + " already used",
+        err:
+          (result.name === name ? "name.name" : "email.email") +
+          " already used",
       };
 
     return user.addUser({ name, email, password });
