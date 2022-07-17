@@ -3,7 +3,7 @@ import { ApolloProvider } from "@apollo/client";
 import client from "../../config/graphql";
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "../styles";
-import Layout from "../components/layout";
+import Layout from "../components/layouts/index.layouts";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

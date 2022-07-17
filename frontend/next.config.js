@@ -2,7 +2,7 @@
 const { NextConfig } = require("next");
 
 const nextConfig = {
-  reactStrictMode: false,
+  reactStrictMode: true,
 };
 
 module.exports = nextConfig;

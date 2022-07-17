@@ -13,6 +13,7 @@ import socket from "./routes/socketio.routes";
 import { checkToken } from "./middlewares/socketio.middleware";
 import { msg } from "./models/messages.model";
 import { graphqlUploadExpress } from "graphql-upload";
+import { user } from "./models/user.model";
 
 async () => await db;
 const app = express();
@@ -37,5 +38,9 @@ const io = new Server(server, socketIoConfog);
 io.path("/");
 io.use(checkToken);
 io.on("connection", socket);
+
+msg.find({}, (_: any, e: any) => {
+  console.log(e);
+});
 
 export default server;

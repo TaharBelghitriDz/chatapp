@@ -1,8 +1,11 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
+import { VStack } from "@chakra-ui/react";
 import { NextPage } from "next";
 import { useEffect } from "react";
 import client from "../../config/graphql";
-import { loadSchema } from "../helper/graphql";
+import { ChateMessagesList } from "../components/chat/chat.messages.list";
+import { ChatStory } from "../components/chat/chat.story";
+import { loadSchema } from "../helper/graphql.helper";
 import { getMessages } from "../shcemas/query";
 
 const Chat: NextPage = (props) => {
@@ -13,7 +16,12 @@ const Chat: NextPage = (props) => {
     })();
   }, []);
 
-  return <div>hi from Messages</div>;
+  return (
+    <VStack spacing="20px">
+      <ChatStory />
+      <ChateMessagesList />
+    </VStack>
+  );
 };
 
 // export const getStaticProps = async () => {

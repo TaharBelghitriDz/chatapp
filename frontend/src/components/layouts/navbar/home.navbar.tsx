@@ -28,11 +28,17 @@ const HomeNavbar = () => {
       top="0"
       left="0"
       w="100vw"
+      zIndex={200000}
     >
       <Text fontSize="36px" fontWeight="bold">
         ola
       </Text>
       <HStack spacing="30px">
+        <Link href="#">
+          <Text cursor="pointer" _hover={{ color: "#A41623" }}>
+            home
+          </Text>
+        </Link>
         <Link href="#">
           <Text cursor="pointer" _hover={{ color: "#A41623" }}>
             blog

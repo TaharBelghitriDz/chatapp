@@ -20,3 +20,10 @@ export interface StyleConfig {
     size: string;
   };
 }
+
+export interface useCustomToasterType {
+  status?: "error" | "success";
+  title: string;
+  description: string;
+  duration?: number;
+}
