@@ -1,12 +1,12 @@
 import { Box, chakra, HStack, Image, Text, VStack } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import chakraHelper from "../../helper/chakraui.helper";
 
 export const Story = () => (
   <VStack
     as={motion.div}
     w="75px"
     h="130px"
-    overflow="hidden"
     textAlign="center"
     p="10px"
     rounded="10px"
@@ -15,9 +15,9 @@ export const Story = () => (
   >
     <Image
       src="https://i.postimg.cc/HWRsNY4q/hands-with-heart-4883949-4073132-removebg-preview-1.png"
-      h="100px"
+      h="75px"
       bg="whiteAlpha.700"
-      w="100px"
+      w="75px"
       rounded="100px"
       border="5px solid white"
     />
@@ -31,12 +31,21 @@ export const ChatStory = () => {
       h="150px"
       w="400px"
       bg="green"
-      float="left"
       px="25px"
       rounded="20px"
       bgColor="#303030"
-      color="#F9F9F9"
+      color="#F8F8FF"
+      display="flex"
+      overflow="scroll"
+      css={chakraHelper.scrollBar}
     >
+      <Story />
+      <Story />
+      <Story />
+      <Story />
+      <Story />
+      <Story />
+      <Story />
       <Story />
       <Story />
       <Story />
