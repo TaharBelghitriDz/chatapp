@@ -1,5 +1,5 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
-import { VStack } from "@chakra-ui/react";
+import { HStack, VStack } from "@chakra-ui/react";
 import { NextPage } from "next";
 import { useEffect } from "react";
 import client from "../../config/graphql";
@@ -17,10 +17,12 @@ const Chat: NextPage = (props) => {
   }, []);
 
   return (
-    <VStack spacing="20px">
+   <HStack pl="3%" >
+     <VStack spacing="20px" w="auto" >
       <ChatStory />
       <ChateMessagesList />
     </VStack>
+   </HStack>
   );
 };
 

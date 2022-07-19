@@ -7,6 +7,8 @@ import {
   FormErrorMessage,
   FormLabel,
   Input,
+  InputGroup,
+  InputRightElement,
   Text,
 } from "@chakra-ui/react";
 import { AnimationControls, motion } from "framer-motion";
@@ -28,7 +30,7 @@ export const LoginFormsUi = (props: {
   const [loginFun, loginDetails] = useMutation(loginMutation);
   const router = useRouter();
   const [isError, setError] = useState({ isError: "", error: "" });
-
+  const [showPassword , setShowPassword] = useState(false)
   const [mutationResult, setMutationResult] = useState<
     Record<string, any> | undefined
   >();
@@ -106,18 +108,27 @@ export const LoginFormsUi = (props: {
 
       <FormControl mt="20px" isInvalid={isPassowrdError}>
         <FormLabel htmlFor="email">password</FormLabel>
+       <InputGroup  >
         <Input
           key="password"
-          type="password"
+          type={ showPassword ?"text" : "password"}
           borderWidth="2px"
           value={loginState.password}
           onChange={({ target: { value } }) => {
             setLogin((e) => ({ ...e, password: value }));
           }}
         />
+      
+        <InputRightElement >
+        <Text cursor="pointer"  onClick={()=>{setShowPassword(!showPassword)}} mr="10px" >
+          {showPassword ? 'Hide' : 'Show'}
+        </Text>
+      </InputRightElement>
+
         {isPassowrdError && (
           <FormErrorMessage>{isError.error}</FormErrorMessage>
         )}
+        </InputGroup>
       </FormControl>
 
       <Text mt="20px" color="orange" cursor="pointer">

@@ -6,7 +6,7 @@ export const Story = () => (
     as={motion.div}
     w="75px"
     h="130px"
-    overflow="hidden"
+   
     textAlign="center"
     p="10px"
     rounded="10px"
@@ -36,7 +36,12 @@ export const ChatStory = () => {
       rounded="20px"
       bgColor="#303030"
       color="#F9F9F9"
+      overflow="scroll"
     >
+      <Story />
+      <Story />
+      <Story />
+      <Story />
       <Story />
       <Story />
       <Story />
