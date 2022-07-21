@@ -6,7 +6,7 @@ const routs: routsObject = {
   "/": <HomeNavbar />,
   "/login": <HomeNavbar />,
   "/blog": <HomeNavbar />,
-  "/chat": <div> chat navbar </div>,
+  "/chat": <div />,
   "/profile": <div> profile navbar </div>,
 };
 
