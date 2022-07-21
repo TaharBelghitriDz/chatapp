@@ -5,8 +5,8 @@ import chakraHelper from "../../helper/chakraui.helper";
 export const Story = () => (
   <VStack
     as={motion.div}
-    w="75px"
-    h="130px"
+    w="90px"
+    h="80%"
     textAlign="center"
     p="10px"
     rounded="10px"
@@ -16,10 +16,11 @@ export const Story = () => (
     <Image
       src="https://i.postimg.cc/HWRsNY4q/hands-with-heart-4883949-4073132-removebg-preview-1.png"
       h="75px"
+      minH="75px"
+      minW="75px"
       bg="whiteAlpha.700"
       w="75px"
-      rounded="100px"
-      border="5px solid white"
+      rounded="30px"
     />
     <Text fontWeight="light">tahar belghitri</Text>
   </VStack>
@@ -28,15 +29,15 @@ export const Story = () => (
 export const ChatStory = () => {
   return (
     <HStack
-      h="150px"
+      h="20%"
       w="400px"
-      bg="green"
       px="25px"
       rounded="20px"
-      bgColor="#303030"
+      bg="#303030"
       color="#F8F8FF"
       display="flex"
       overflow="scroll"
+      spacing="20px"
       css={chakraHelper.scrollBar}
     >
       <Story />
