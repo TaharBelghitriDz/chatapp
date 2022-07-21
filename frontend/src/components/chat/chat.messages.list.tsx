@@ -37,7 +37,7 @@ export const Message = () => {
 export const ChateMessagesList = () => {
   return (
     <VStack
-      h="500px"
+      h="calc(80% - 20px)"
       w="400px"
       bg="#303030"
       rounded="20px"
@@ -48,6 +48,9 @@ export const ChateMessagesList = () => {
       css={chakraHelper.scrollBar}
       color="#F8F8FF"
     >
+      <Message />
+      <Message />
+      <Message />
       <Message />
       <Message />
       <Message />
