@@ -1,32 +1,30 @@
 import express from "express";
 import helmet from "helmet";
 import cors from "cors";
-import "./config/mongo.config";
+import db from "../config/mongo.config";
 import { graphqlHTTP } from "express-graphql";
 import { notFoundError, reqErrHandler } from "./middlewares/reqErorHandler";
-import config from "./config";
-import { GraphQLFileLoader } from "@graphql-tools/graphql-file-loader";
-import { loadSchemaSync } from "@graphql-tools/load";
-import { join } from "path";
-import resolvers from "./resolvers";
-import { addResolversToSchema } from "@graphql-tools/schema";
+import config from "../config";
+import { createServer } from "http";
+import schema from "./schemas.graphql/index.scheams.graphql";
+import { Server } from "socket.io";
+import socketIoConfog from "../config/socketio.confog";
+import socket from "./routes/socketio.routes";
+import { checkToken } from "./middlewares/socketio.middleware";
+import { msg } from "./models/messages.model";
+import { graphqlUploadExpress } from "graphql-upload";
+import { user } from "./models/user.model";
+
+async () => await db;
 const app = express();
+const server = createServer(app);
 
 app.use(helmet());
 app.use(cors());
-
-const schema = loadSchemaSync(
-  [
-    join(__dirname, "./schemas.graphql/query.graphql"),
-    join(__dirname, "./schemas.graphql/mutation.graphql"),
-  ],
-  {
-    loaders: [new GraphQLFileLoader()],
-  }
-);
+app.use(graphqlUploadExpress());
 
 app.use(
-  "*",
+  "/",
   graphqlHTTP({
     schema: addResolversToSchema({
       schema,
@@ -39,4 +37,13 @@ app.use(
 app.use(notFoundError);
 app.use(reqErrHandler);
 
-export default app;
+const io = new Server(server, socketIoConfog);
+io.path("/");
+io.use(checkToken);
+io.on("connection", socket);
+
+msg.find({}, (_: any, e: any) => {
+  console.log(e);
+});
+
+export default server;

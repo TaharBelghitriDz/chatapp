@@ -2,13 +2,57 @@ type auth {
   err: String
   token: String
 }
+type action {
+  err: String
+  result: Boolean
+}
+
+type File {
+  filename: String!
+  mimetype: String!
+  encoding: String!
+}
+
+type userDetails {
+  name: String
+  cover: String
+  followers: Boolean
+  follwed: Boolean
+  err: String
+}
+
+type OneMessage {
+  _id: String
+  from: String
+  date: String
+  content: String
+  repsponseOf: String
+  reaction: String
+  transfer: String
+}
+
+type messages {
+  err: String
+  _id: [String]
+  seen: [String]
+  messages: [OneMessage]
+}
+
+scalar Upload
 
 type Mutation {
   login(email: String, password: String): auth
+
   signup(
     email: String
     password: String
     checkPassword: String
     name: String
   ): auth
+
+  findUser(token: String, name: String): userDetails
+
+  follow(token: String, name: String, follow: Boolean): action
+
+  uploadCover(file: Upload!): action
 }

@@ -1,37 +1,45 @@
-import { validEmail, validName } from "../../helpers/userDetails.validation";
-import { user } from "../../models/user.model";
-import { GraphSignUpType } from "../../types.interfaces/resolvers";
-import jwt from "jsonwebtoken";
+import { tokenSign } from "../helpers/jwt";
+import { validEmail, validName } from "../helpers/userDetails.validation";
+import { user } from "../models/user.model";
+import {
+  GraphLoginType,
+  GraphSignUpType,
+} from "../types.interfaces/resolvers.types";
 
 export const signup: GraphSignUpType = async (
   _,
   { checkPassword, password, email, name }
 ) => {
-  if (password !== checkPassword) return { err: "check the password again" };
+  if (password !== checkPassword)
+    return { err: "password.check the password again" };
 
-  if (!validEmail(email)) return { err: "unvalid email " };
+  if (!validEmail(email)) return { err: "email.unvalid email " };
+
   if (password.length < 8 || password.length > 30)
-    return { err: "unvalid password" };
-  console.log("validate name " + validName(name));
-  if (!validName(name)) return { err: "unvalid name" };
+    return { err: "password.check your  password" };
 
-  return user
-    .addUser({ name, email, password })
-    .then((result: any) => ({
-      token: jwt.sign({ _id: result._id }, `${result._id}`),
-    }))
-    .catch(
-      (err: any) => (
-        console.log(err), { err: "somthing wrong happend pleas try again" }
-      )
-    );
+  if (!validName(name)) return { err: "name.name unvalid name" };
+
+  return user.findUser({ $or: [{ name }, { email }] }, (result) => {
+    if (result)
+      return {
+        err:
+          (result.name === name ? "name.name" : "email.email") +
+          " already used",
+      };
+
+    return user.addUser({ name, email, password });
+  });
 };
 
-export const login = async (args: any) => {
-  console.log(args);
-  // if(password=== )
-  // if (!validEmail(email)) return { err: "unvalid email " };
-  // if (password.length < 8 || password.length > 30)
-  //   return { err: "unvalid password" };
-  return { token: "token" };
+export const login: GraphLoginType = async (_, { email, password }) => {
+  if (!validEmail(email)) return { err: "email.unvalid email " };
+
+  if (password.length < 8 || password.length > 30)
+    return { err: "password.unvalid password" };
+
+  return user.findUser({ email }, (result) => {
+    if (result) return { token: tokenSign(result._id) };
+    else return { err: "email.unvalid email" };
+  });
 };
