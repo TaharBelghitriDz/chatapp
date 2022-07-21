@@ -3,10 +3,10 @@ import { loadSchemaSync } from "@graphql-tools/load";
 import { addResolversToSchema } from "@graphql-tools/schema";
 import { applyMiddleware, IMiddleware } from "graphql-middleware";
 import { join } from "path";
-import { login, signup } from "../resolvers/auth";
 import { findUser, follow, getMessages } from "../resolvers/relations.resolver";
 import { checkUser } from "../middlewares/graphql.middlewares";
 import { uploadCover } from "../resolvers/parms.resolver";
+import { login, signup } from "../resolvers/mutation/auth";
 
 const schemaLoad = loadSchemaSync(
   [join(__dirname, "./query.graphql"), join(__dirname, "./mutation.graphql")],

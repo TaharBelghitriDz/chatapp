@@ -14,6 +14,8 @@ import { checkToken } from "./middlewares/socketio.middleware";
 import { msg } from "./models/messages.model";
 import { graphqlUploadExpress } from "graphql-upload";
 import { user } from "./models/user.model";
+import { addResolversToSchema } from "@graphql-tools/schema";
+import resolvers from "./resolvers";
 
 async () => await db;
 const app = express();
