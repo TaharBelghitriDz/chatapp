@@ -1,6 +1,6 @@
 export const global = {
   body: {
-    bg: "#FAFAFA",
+    bg: "#1F1F1F",
     color: "#404040",
     fontFamily: "'Josefin Sans', sans-serif",
   },
@@ -14,5 +14,8 @@ export const customTheme = {
   color: {
     red: "#A41623",
     orange: "#FF7F11",
+    black: {
+      1: "#303030",
+    },
   },
 };
