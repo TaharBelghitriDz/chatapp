@@ -1,65 +1,31 @@
-import { Box, HStack, Text, VStack } from "@chakra-ui/react";
-import { motion } from "framer-motion";
+import { Box, VStack } from "@chakra-ui/react";
 import chakraHelper from "../../helper/chakraui.helper";
-
-export const Message = () => {
-  return (
-    <HStack
-      as={motion.div}
-      width="80%"
-      px="10px"
-      bg="#383838"
-      w="100%"
-      justifyContent="space-between"
-      h="50xp"
-      cursor="pointer"
-      rounded="10px"
-      p="10px"
-      whileHover={{ backgroundColor: "#494949" }}
-    >
-      <Box h="50px" w="50px" bg="purple" rounded="full" />
-      <HStack h="50px" w="calc(100% - 70px)" justifyContent="space-between">
-        <VStack
-          alignItems="start"
-          justifyContent="space-around"
-          spacing="0px"
-          h="40px"
-        >
-          <Text fontWeight="bold"> Tahar belghitri </Text>
-          <Text fontWeight="light">you : yeah its fine</Text>
-        </VStack>
-        <Text>hi</Text>
-      </HStack>
-    </HStack>
-  );
-};
+import ChatNavbar from "../layouts/navbar/chat.navbar";
+import { ChatStory } from "./chat.story";
+import { Message } from "./message";
 
 export const ChateMessagesList = () => {
   return (
     <VStack
-      h="calc(80% - 20px)"
+      maxW="400px"
       w="400px"
-      bg="#303030"
-      rounded="20px"
-      spacing="15px"
-      p="15px"
+      h="100%"
+      borderRight="solid 1px #B0B0B0"
+      p="10px"
+      pt="10px"
       alignItems="start"
-      overflow="scroll"
-      css={chakraHelper.scrollBar}
-      color="#F8F8FF"
     >
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
+      <ChatNavbar />
+      <Box
+        pr="10px"
+        w="inherit"
+        h="inherit"
+        overflow="scroll"
+        css={chakraHelper.scrollBar}
+      >
+        <ChatStory />
+        <Message />
+      </Box>
     </VStack>
   );
 };

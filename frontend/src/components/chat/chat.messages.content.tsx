@@ -5,13 +5,23 @@ const ChatHeader = () => {
     <HStack
       w="100%"
       h="100px"
-      bg="#303030"
-      rounded="20px"
-      px="20px"
+      p="10px"
       justifyContent="space-between"
+      alignItems="end"
     >
-      <Box h="75px" w="75px" bg="#ffffff" rounded="20px" />
-      <Text>hi</Text>
+      <HStack alignItems="end" spacing="20px">
+        <Box h="50px" w="50px" bg="#1F1F1F" rounded="10px" />
+        <Box fontSize="20px" fontWeight="bold" lineHeight="22px">
+          tahar
+          <Text /> belghitri
+        </Box>
+      </HStack>
+      <HStack spacing="20px">
+        <Box h="30px" w="30px" bg="#1F1F1F" rounded="full" />
+        <Box h="30px" w="30px" bg="#1F1F1F" rounded="full" />
+        <Box h="30px" w="30px" bg="#1F1F1F" rounded="full" />
+        <Box h="30px" w="30px" bg="#1F1F1F" rounded="full" />
+      </HStack>
     </HStack>
   );
 };
@@ -25,7 +35,7 @@ const MessageInput = () => {
       left="5%"
       bg="red"
       h="100px"
-      rounded="15px"
+      rounded="20px"
     ></Box>
   );
 };

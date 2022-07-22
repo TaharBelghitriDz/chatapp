@@ -6,12 +6,12 @@ export const Story = () => (
   <VStack
     as={motion.div}
     w="90px"
-    h="80%"
     textAlign="center"
-    p="10px"
     rounded="10px"
+    p="10px"
     cursor="pointer"
-    whileHover={{ backgroundColor: "#1F1F1F", transition: { duration: 0.1 } }}
+    initial={{ backgroundColor: "#00000000" }}
+    whileHover={{ backgroundColor: "#cccccc" }}
   >
     <Image
       src="https://i.postimg.cc/HWRsNY4q/hands-with-heart-4883949-4073132-removebg-preview-1.png"
@@ -20,7 +20,7 @@ export const Story = () => (
       minW="75px"
       bg="whiteAlpha.700"
       w="75px"
-      rounded="30px"
+      rounded="15px"
     />
     <Text fontWeight="light">tahar belghitri</Text>
   </VStack>
@@ -28,29 +28,45 @@ export const Story = () => (
 
 export const ChatStory = () => {
   return (
-    <HStack
-      h="20%"
-      w="400px"
-      px="25px"
-      rounded="20px"
-      bg="#303030"
-      color="#F8F8FF"
-      display="flex"
-      overflow="scroll"
-      spacing="20px"
-      css={chakraHelper.scrollBar}
-    >
-      <Story />
-      <Story />
-      <Story />
-      <Story />
-      <Story />
-      <Story />
-      <Story />
-      <Story />
-      <Story />
-      <Story />
-      <Story />
-    </HStack>
+    <VStack p="10px" pt="30px" w="inherit" pos="relative">
+      <HStack spacing="20px" justifyContent="start" w="full">
+        <Text fontSize="24px" fontWeight="bold">
+          Story
+        </Text>
+        <Box h="30px" w="30px" bg="gray" rounded="full" />
+      </HStack>
+
+      <HStack
+        h="1OOpx"
+        w="full"
+        pr="25px"
+        pt="10px"
+        display="flex"
+        overflow="scroll"
+        spacing="20px"
+        css={chakraHelper.scrollBar}
+      >
+        <Box
+          pos="absolute"
+          right="10px"
+          h="50px"
+          w="50px"
+          rounded="full"
+          bg="gray"
+          shadow="0px 0px 10px 0px #1F1F1F"
+        />
+        <Story />
+        <Story />
+        <Story />
+        <Story />
+        <Story />
+        <Story />
+        <Story />
+        <Story />
+        <Story />
+        <Story />
+        <Story />
+      </HStack>
+    </VStack>
   );
 };

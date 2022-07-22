@@ -1,8 +1,10 @@
 export const global = {
   body: {
-    bg: "#1F1F1F",
+    bg: "#EEEEEE",
     color: "#404040",
     fontFamily: "'Josefin Sans', sans-serif",
+    padding: 0,
+    margin: 0,
   },
 };
 

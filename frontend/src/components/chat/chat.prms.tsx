@@ -1,49 +1,62 @@
-import { Box, HStack, Text, VStack } from "@chakra-ui/react";
-import { motion } from "framer-motion";
-
-const ChatMenu = () => (
-  <HStack
-    h="100px"
-    w="100%"
-    rounded="20px"
-    bg="#303030"
-    p="20px"
-    justifyContent="space-between"
-  >
-    <HStack
-      as={motion.div}
-      w="auto"
-      p="15px"
-      rounded="15px"
-      whileHover={{ backgroundColor: "#1F1F1F", transition: { duration: 0.1 } }}
-      spacing="20px"
-    >
-      <Box height="50px" rounded="full" w="50px" bg="red" />
-      <Text color="white" fontWeight="bold">
-        Tahar belghitri
-      </Text>
-    </HStack>
-    <HStack spacing="20px">
-      <Box height="40px" rounded="full" w="40px" bg="red" />
-      <Box height="40px" rounded="full" w="40px" bg="red" />
-    </HStack>
-  </HStack>
-);
+import { Box, Button, HStack, Text, VStack } from "@chakra-ui/react";
 
 export const ChatPrms = () => {
   return (
     <VStack
-      h="inherit"
+      h="full"
       w="400px"
       spacing="20px"
-      bg="whiter"
-      color="whiter"
-      cursor="pointer"
+      alignItems="flex-start"
+      pl="10px"
+      borderLeft="solid 1px #B0B0B0"
+      fontSize="20px"
     >
-      <ChatMenu />
-      <Box w="100%" h="calc(100% - 100px)" rounded="20px" bg="#303030">
-        hi
+      <HStack alignItems="flex-end" h="100px">
+        <Text fontSize="24px" w="full" fontWeight="bold">
+          chat details
+        </Text>
+      </HStack>
+      <HStack spacing="20px" cursor="pointer">
+        <Box w="25px" h="25px" bg="gray" rounded="full" />
+        <Text>profile</Text>
+      </HStack>
+      <HStack spacing="20px" cursor="pointer">
+        <Box w="25px" h="25px" bg="gray" rounded="full" />
+        <Text>emojis</Text>
+      </HStack>
+      <HStack spacing="20px" cursor="pointer">
+        <Box w="25px" h="25px" bg="gray" rounded="full" />
+        <Text>nickname</Text>
+      </HStack>
+      <HStack spacing="20px" cursor="pointer">
+        <Box w="25px" h="25px" bg="gray" rounded="full" />
+        <Text>seach in converstation</Text>
+      </HStack>
+      <HStack spacing="20px" cursor="pointer">
+        <Box w="25px" h="25px" bg="gray" rounded="full" />
+        <Text fontWeight="bold" fontSize="22px">
+          media
+        </Text>
+      </HStack>
+      <Box
+        display="flex"
+        justifyContent="center"
+        pos="relative"
+        w="full"
+        h="200px"
+        bg="gray.400"
+        rounded="20px"
+      >
+        <Button pos="absolute" backgroundColor="#EEEEEE" bottom="20px">
+          see more
+        </Button>
       </Box>
+      <HStack spacing="20px" cursor="pointer" pt="30px">
+        <Box w="25px" h="25px" bg="gray" rounded="full" />
+        <Text fontWeight="bold" fontSize="22px">
+          block
+        </Text>
+      </HStack>
     </VStack>
   );
 };

@@ -23,14 +23,11 @@ const Chat: NextPage = (props) => {
       alignContent="start"
       alignItems="start"
       pl="3%"
-      h="97vh"
-      mt="2vh"
+      h="98vh"
+      mt="1vh"
       spacing="20px"
     >
-      <VStack spacing="20px" w="auto" h="inherit">
-        <ChatStory />
-        <ChateMessagesList />
-      </VStack>
+      <ChateMessagesList />
       <ChatContent />
       <ChatPrms />
     </HStack>
