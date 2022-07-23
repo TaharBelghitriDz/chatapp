@@ -15,7 +15,14 @@ type messages {
   messages: [OneMessage]
 }
 
+type userDetails {
+  err: String
+  cover: String
+  name: String
+}
+
 type Query {
   hi: String
   getMessages(token: String): messages
+  getUserDetails: userDetails
 }
