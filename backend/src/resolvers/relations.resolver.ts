@@ -77,3 +77,8 @@ export const getMessages = (
     .then((messages: messagesResultType[] | []) => ({ messages }))
     .catch(() => ({ err: "something wrong happend" }))
 );
+
+export const getUserDetails = (
+  _: any,
+  { userData: { name, cover } }: { userData: dbResultType }
+) => ({ cover, name });
