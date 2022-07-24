@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import HomeNavbar from "./home.navbar";
-import { routes, routsObject } from "../../../interfaces/core.types";
+import { routes, routsObject } from "../../../types/core.types";
 import { Box } from "@chakra-ui/react";
 
 const routs: routsObject = {

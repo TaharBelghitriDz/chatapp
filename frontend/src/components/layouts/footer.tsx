@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { routes, routsObject } from "../../interfaces/core.types";
+import { routes, routsObject } from "../../types/core.types";
 
 const routs: routsObject = {
   "/": <Box>footer </Box>,
