@@ -1,20 +1,24 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { Flex, HStack, VStack } from "@chakra-ui/react";
 import { NextPage } from "next";
-import { useEffect } from "react";
+import { emit } from "process";
+import { useEffect, useState } from "react";
 import client from "../../config/graphql";
 import { ChatContent } from "../components/chat/chat.messages.content";
 import { ChateMessagesList } from "../components/chat/chat.messages.list";
 import { ChatPrms } from "../components/chat/chat.prms";
-import { ChatStory } from "../components/chat/chat.story";
 import { loadSchema } from "../helper/graphql.helper";
-import { getMessages } from "../shcemas/query";
+import Emitter from "../helper/state";
+import { getMessages, getUserDetails } from "../shcemas/query";
 
-const Chat: NextPage = (props) => {
+const Chat: NextPage = () => {
   useEffect(() => {
     (async () => {
-      const { data, errors } = await loadSchema("query", getMessages);
-      console.log(data);
+      const messages = await loadSchema("query", getMessages);
+      const userDetails = await loadSchema("query", getUserDetails);
+
+      if (!messages.errors && !userDetails.errors)
+        Emitter.emit("getUserDetails", { messages, userDetails });
     })();
   }, []);
 
@@ -25,6 +29,9 @@ const Chat: NextPage = (props) => {
       pl="3%"
       h="98vh"
       mt="1vh"
+      maxW="1500px"
+      pos="relative"
+      left="10%"
       spacing="20px"
     >
       <ChateMessagesList />

@@ -1,5 +1,7 @@
 import { Box, VStack } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import chakraHelper from "../../helper/chakraui.helper";
+import Emitter from "../../helper/state";
 import ChatNavbar from "../layouts/navbar/chat.navbar";
 import { ChatStory } from "./chat.story";
 import { Message } from "./message";

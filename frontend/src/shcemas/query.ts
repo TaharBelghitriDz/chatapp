@@ -14,3 +14,17 @@ export const getMessages = {
     }
   `,
 };
+
+export const getUserDetails = {
+  errorPolicy: "ignore",
+  fetchPolicy: "ignore",
+  query: gql`
+    query users {
+      getUserDetails {
+        err
+        name
+        cover
+      }
+    }
+  `,
+};
