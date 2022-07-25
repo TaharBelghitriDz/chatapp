@@ -1,15 +1,15 @@
+import { ChatContent } from "@/components/chat/chat.messages.content";
+import { ChateMessagesList } from "@/components/chat/chat.messages.list";
+import { ChatPrms } from "@/components/chat/chat.prms";
+import { loadSchema } from "@/helper/graphql.helper";
+import Emitter from "@/helper/state";
+import { getMessages, getUserDetails } from "@/schemas/query";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { Flex, HStack, VStack } from "@chakra-ui/react";
 import { NextPage } from "next";
 import { emit } from "process";
 import { useEffect, useState } from "react";
 import client from "../../config/graphql";
-import { ChatContent } from "../components/chat/chat.messages.content";
-import { ChateMessagesList } from "../components/chat/chat.messages.list";
-import { ChatPrms } from "../components/chat/chat.prms";
-import { loadSchema } from "../helper/graphql.helper";
-import Emitter from "../helper/state";
-import { getMessages, getUserDetails } from "../shcemas/query";
 
 const Chat: NextPage = () => {
   useEffect(() => {
