@@ -12,11 +12,11 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { AnimationControls, motion } from "framer-motion";
+import { errorMsg } from "helper/graphql.helper";
+import { useCustomToaster } from "hooks/chakra.hooks";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { errorMsg } from "../../helper/graphql.helper";
-import { useCustomToaster } from "../../hooks/chakra.hooks";
-import { loginMutation } from "../../shcemas/mutation";
+import { loginMutation } from "schemas/mutation";
 
 const Spam = chakra("span");
 
@@ -30,7 +30,7 @@ export const LoginFormsUi = (props: {
   const [loginFun, loginDetails] = useMutation(loginMutation);
   const router = useRouter();
   const [isError, setError] = useState({ isError: "", error: "" });
-  const [showPassword , setShowPassword] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
   const [mutationResult, setMutationResult] = useState<
     Record<string, any> | undefined
   >();
@@ -108,26 +108,32 @@ export const LoginFormsUi = (props: {
 
       <FormControl mt="20px" isInvalid={isPassowrdError}>
         <FormLabel htmlFor="email">password</FormLabel>
-       <InputGroup  >
-        <Input
-          key="password"
-          type={ showPassword ?"text" : "password"}
-          borderWidth="2px"
-          value={loginState.password}
-          onChange={({ target: { value } }) => {
-            setLogin((e) => ({ ...e, password: value }));
-          }}
-        />
-      
-        <InputRightElement >
-        <Text cursor="pointer"  onClick={()=>{setShowPassword(!showPassword)}} mr="10px" >
-          {showPassword ? 'Hide' : 'Show'}
-        </Text>
-      </InputRightElement>
+        <InputGroup>
+          <Input
+            key="password"
+            type={showPassword ? "text" : "password"}
+            borderWidth="2px"
+            value={loginState.password}
+            onChange={({ target: { value } }) => {
+              setLogin((e) => ({ ...e, password: value }));
+            }}
+          />
 
-        {isPassowrdError && (
-          <FormErrorMessage>{isError.error}</FormErrorMessage>
-        )}
+          <InputRightElement>
+            <Text
+              cursor="pointer"
+              onClick={() => {
+                setShowPassword(!showPassword);
+              }}
+              mr="10px"
+            >
+              {showPassword ? "Hide" : "Show"}
+            </Text>
+          </InputRightElement>
+
+          {isPassowrdError && (
+            <FormErrorMessage>{isError.error}</FormErrorMessage>
+          )}
         </InputGroup>
       </FormControl>
 

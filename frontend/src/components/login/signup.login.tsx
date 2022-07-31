@@ -1,4 +1,3 @@
-import { useMutation } from "@apollo/client";
 import {
   Box,
   Button,
@@ -10,11 +9,12 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { AnimationControls, motion } from "framer-motion";
+import { errorMsg } from "helper/graphql.helper";
+import { useCustomToaster } from "hooks/chakra.hooks";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { errorMsg } from "../../helper/graphql.helper";
-import { useCustomToaster } from "../../hooks/chakra.hooks";
-import { signupMutation } from "../../shcemas/mutation";
+import { useMutation } from "@apollo/client";
+import { signupMutation } from "schemas/mutation";
 
 const Spam = chakra("span");
 const ChakraBox = motion(Box);

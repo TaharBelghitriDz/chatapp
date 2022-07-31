@@ -17,6 +17,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { IconUserSearch } from "@tabler/icons";
+import { loadSchema } from "helper/graphql.helper";
 import { SingleMessage } from "./message";
 
 const LoadingUser = () => {
@@ -43,6 +44,8 @@ const LoadingUser = () => {
 };
 
 const SearchModal = (props: { isOpen: boolean; onClose: () => void }) => {
+  //const search = await loadSchema("mutate" , );
+
   return (
     <Modal isOpen={props.isOpen} onClose={props.onClose}>
       <ModalOverlay />
@@ -71,7 +74,7 @@ const SearchModal = (props: { isOpen: boolean; onClose: () => void }) => {
         </ModalBody>
 
         <ModalFooter>
-          <Button colorScheme="blue" mr={3}>
+          <Button colorScheme="blue" fontSize="20px">
             search now
           </Button>
         </ModalFooter>

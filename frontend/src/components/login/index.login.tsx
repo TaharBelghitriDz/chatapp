@@ -1,5 +1,7 @@
 import { Box, Text, VStack } from "@chakra-ui/react";
 import { useAnimationControls } from "framer-motion";
+import { LoginFormsUi } from "./login.component";
+import { SignupFomrsUi } from "./signup.login";
 
 export const LoginInfos = () => {
   return (

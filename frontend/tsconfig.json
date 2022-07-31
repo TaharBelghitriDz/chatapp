@@ -16,22 +16,22 @@
     "incremental": true,
     "baseUrl": "./src",
     "paths": {
-      "@/components/*": [
+      "components/*": [
         "components/*"
       ],
-      "@/helper/*": [
+      "helper/*": [
         "helper/*"
       ],
-      "@/hooks/*": [
+      "hooks/*": [
         "hooks/*"
       ],
-      "@/pages/*": [
+      "pages/*": [
         "pages/*"
       ],
-      "@/schemas/*": [
+      "schemas/*": [
         "schemas/*"
       ],
-      "@/types/*": [
+      "types/*": [
         "types/*"
       ],
     }
