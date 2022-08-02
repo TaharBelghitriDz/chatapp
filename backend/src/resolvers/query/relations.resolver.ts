@@ -1,11 +1,11 @@
-import { msg } from "../models/messages.model";
-import { user } from "../models/user.model";
+import { msg } from "../../models/messages.model";
+import { user } from "../../models/user.model";
 import {
   dbResultType,
   messagesResultType,
   userDataInterface,
   userSchemaInterface,
-} from "../schemas.mongo/user.mongo.schema";
+} from "../../schemas/mongo/user.mongo.schema";
 
 export const findUser = async (_: any, { name }: any) =>
   await user

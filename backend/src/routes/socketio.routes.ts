@@ -1,5 +1,5 @@
-import { Socket } from "socket.io";
 import { reaction, send } from "../controllers/messages.controllers";
+import { Socket } from "socket.io";
 import { validateEvnt } from "../helpers/sockeIoHelpers";
 
 const events = (data: any, socket: Socket): Record<string, any> => ({

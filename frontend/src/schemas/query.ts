@@ -29,4 +29,16 @@ export const getUserDetails = {
   `,
 };
 
-// export const search
+export const findUser = {
+  errorPolicy: "ignore",
+  fetchPolicy: "ignore",
+  query: gql`
+    query users {
+      findUser(name: "tahar bel") {
+        err
+        cover
+        name
+      }
+    }
+  `,
+};

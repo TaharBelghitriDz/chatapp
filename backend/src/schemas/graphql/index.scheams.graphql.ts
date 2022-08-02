@@ -2,16 +2,16 @@ import { GraphQLFileLoader } from "@graphql-tools/graphql-file-loader";
 import { loadSchemaSync } from "@graphql-tools/load";
 import { addResolversToSchema } from "@graphql-tools/schema";
 import { applyMiddleware, IMiddleware } from "graphql-middleware";
+import { checkUser } from "../../middlewares/graphql.middlewares";
 import { join } from "path";
+import { signup, login } from "../../resolvers/mutation/auth";
+import { uploadCover } from "../../resolvers/parms.resolver";
 import {
   findUser,
   follow,
   getMessages,
   getUserDetails,
-} from "../resolvers/relations.resolver";
-import { checkUser } from "../middlewares/graphql.middlewares";
-import { uploadCover } from "../resolvers/parms.resolver";
-import { login, signup } from "../resolvers/mutation/auth";
+} from "../../resolvers/query/relations.resolver";
 
 const schemaLoad = loadSchemaSync(
   [join(__dirname, "./query.graphql"), join(__dirname, "./mutation.graphql")],
@@ -23,9 +23,9 @@ const schemaLoad = loadSchemaSync(
 const Mutation = {
   signup,
   login,
-  findUser,
   follow,
   uploadCover,
+  findUser,
 };
 
 const Query = {

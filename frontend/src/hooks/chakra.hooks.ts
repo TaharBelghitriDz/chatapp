@@ -1,5 +1,5 @@
 import { useToast } from "@chakra-ui/react";
-import { useCustomToasterType } from "../interfaces/chakraui.types";
+import { useCustomToasterType } from "../types/chakraui.types";
 
 export const useCustomToaster = () => {
   const toast = useToast();

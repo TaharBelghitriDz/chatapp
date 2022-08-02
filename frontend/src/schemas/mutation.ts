@@ -27,3 +27,13 @@ export const signupMutation = gql`
     }
   }
 `;
+
+export const findUser = gql`
+  mutation users($name: String) {
+    findUser(name: $name) {
+      err
+      cover
+      name
+    }
+  }
+`;

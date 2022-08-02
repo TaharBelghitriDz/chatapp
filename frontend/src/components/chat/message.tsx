@@ -2,6 +2,7 @@ import {
   Box,
   Divider,
   HStack,
+  Image,
   SlideFade,
   Text,
   VStack,
@@ -11,7 +12,11 @@ import { ChatSearch } from "./chat.search";
 import { IconAdjustmentsHorizontal } from "@tabler/icons";
 import { useState } from "react";
 
-export const SingleMessage = () => {
+export const SingleMessage = (props: {
+  name?: string;
+  content?: string;
+  cover?: string;
+}) => {
   const [isHoverd, setHover] = useState(false);
 
   return (
@@ -27,15 +32,22 @@ export const SingleMessage = () => {
       rounded="15px"
       p="10px"
       fontSize="20px"
-      whileHover={{ backgroundColor: "#cccccc" }}
+      //    whileHover={{ backgroundColor: "#cccccc" }}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      <Box h="50px" w="50px" bg="gray" rounded="15px" />
+      <Image
+        h="50px"
+        w="50px"
+        rounded="15px"
+        src={props.cover || "https://picsum.photos/50"}
+      />
       <HStack w="calc(100% - 70px)" justifyContent="space-between">
         <VStack alignItems="start" spacing="10px" lineHeight="15px">
-          <Text fontWeight="bold"> Tahar belghitri </Text>
-          <Text fontWeight="light">you : yeah its fine</Text>
+          <Text fontWeight="bold"> {props.name || "Tahar belghitri"} </Text>
+          <Text fontWeight="light">
+            {props.content || "you : yeah its fine"}
+          </Text>
         </VStack>
         <SlideFade in={isHoverd}>
           <HStack spacing="10px">

@@ -1,9 +1,8 @@
 import { tokenVrfy } from "../helpers/jwt";
-import { socketMidFun } from "../types.interfaces/messages.types";
+import { socketMidFun } from "../types/messages.types";
 
 export const checkToken: socketMidFun = (socket, next) => {
   try {
-    console.log(socket.handshake.auth);
     let token = socket.handshake.auth.token;
     if (!token) throw "no token";
 

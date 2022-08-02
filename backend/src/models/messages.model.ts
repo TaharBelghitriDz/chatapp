@@ -3,7 +3,7 @@ import {
   messageSchema,
   messagesListSchema,
   messagesModelInterface,
-} from "../schemas.mongo/messages.mongo.schema";
+} from "../schemas/mongo/messages.mongo.schema";
 
 const MessageSchema = new Schema<messageSchema>({
   from: String,

@@ -4,8 +4,8 @@ import { NextComponentType } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { LoginForms, LoginInfos } from "../components/login/index.login";
-import { loginMutation, signupMutation } from "../shcemas/mutation";
-import { getMessages } from "../shcemas/query";
+import { loginMutation, signupMutation } from "../schemas/mutation";
+import { getMessages } from "../schemas/query";
 
 const login: NextComponentType = () => {
   // const [loginState, setLogin] = useState({ email: "", password: "" });

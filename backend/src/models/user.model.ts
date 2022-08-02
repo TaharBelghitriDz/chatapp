@@ -7,7 +7,7 @@ import {
   findUserInterface,
   userModelINterface,
   userSchemaInterface,
-} from "../schemas.mongo/user.mongo.schema";
+} from "../schemas/mongo/user.mongo.schema";
 
 const userSchema = new Schema<userSchemaInterface>({
   name: String,

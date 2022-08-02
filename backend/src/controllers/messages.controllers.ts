@@ -7,7 +7,7 @@ import {
   removeMessagetype,
   seenType,
   sendType,
-} from "../types.interfaces/messages.types";
+} from "../types/messages.types";
 
 export const send: sendType = async (args, socket) => {
   if (args.content?.split(" ").join("") === "")

@@ -11,7 +11,6 @@ export const checkUser: IMiddlewareFunction = async (
 ) => {
   try {
     const { headers } = cntx;
-    console.log(headers);
 
     if (!headers.token) return { err: "unvalid user #1" };
 

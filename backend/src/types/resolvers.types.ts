@@ -1,4 +1,4 @@
-import { returnedUserInterface } from "../schemas.mongo/user.mongo.schema";
+import { returnedUserInterface } from "../schemas/mongo/user.mongo.schema";
 
 interface result {
   err?: string | undefined;

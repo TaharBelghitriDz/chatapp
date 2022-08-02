@@ -1,10 +1,7 @@
 import { tokenSign } from "../../helpers/jwt";
 import { validEmail, validName } from "../../helpers/userDetails.validation";
 import { user } from "../../models/user.model";
-import {
-  GraphLoginType,
-  GraphSignUpType,
-} from "../../types.interfaces/resolvers.types";
+import { GraphLoginType, GraphSignUpType } from "../../types/resolvers.types";
 
 export const signup: GraphSignUpType = async (
   _,
